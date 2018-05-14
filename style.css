@@ -1,0 +1,17 @@
+body {
+    width: 60%;
+    margin: auto;
+    background: darkslategrey;
+    color: orange;
+    font-family: monospace;
+    font-size: 1.4em;
+}
+
+header {
+    text-align: center;
+}
+
+.subtitle {
+    font-style: italic;
+    font-size: .75em;
+}
