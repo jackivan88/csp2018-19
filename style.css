@@ -27,3 +27,13 @@ a:visited {
 a:hover {
     color: #d33682;
 }
+
+.checkpoint {
+    background-color: #d33682;
+    padding: 1em;
+    color: #073642;
+}
+
+.turnin {
+    font-weight: bold;
+}
