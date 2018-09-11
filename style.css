@@ -40,7 +40,5 @@ a:hover {
 }
 
 .keyboardShortcut {
-    background: #d33682;
-    padding: .05em;
-    color: #073642
+    font-weight: bold
 }
