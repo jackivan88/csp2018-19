@@ -279,10 +279,11 @@
         Raise your hand and have Mr. Olinda verify this checkpoint.
     </p>
     <h3 id="checkpoint-19-pushd-popd">Checkpoint 19: pushd, popd</h3>
-    <p>These two commands allow you to quickly switch between different directories. It works a little differently in
-        ksh than in PowerShell.</p>
+    <p>These two commands allow you to quickly switch between different directories. <i>It works a little differently
+            in ksh than in PowerShell. <b>In fact, it doesn't work at all in ksh.</b> What can you do to get around
+            this problem? Keep in mind that it's very easy to install alternate shells in Unix or Linux.</i></p>
     <p>First, type <code>mkdir -p test/anotherTest/yetAnotherTest</code> and press <span class="keyboardShortcut">Enter</span>.
-        Then type <code>pushd         test/anotherTest/yetAnotherTest</code> and see what happens. Confirm that you're
+        Then type <code>pushd test/anotherTest/yetAnotherTest</code> and see what happens. Confirm that you're
         in the &quot;yetAnotherTest&quot; directory with <code>pwd</code>.</p>
     <p>Then type <code>popd</code> and press <span class="keyboardShortcut">Enter</span>. Now where are you? Confirm
         this with <code>pwd</code>.</p>
