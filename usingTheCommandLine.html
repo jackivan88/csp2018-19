@@ -23,7 +23,7 @@
         user interfaces were common, most machines were run using the command line. All three major operating systems -
         Linux, Windows, and macOS - have a command line, even though you don’t have to use them. We are going to
         practice using PowerShell and ksh.</p>
-        
+
     <p>This is a much longer lesson, so don't get frustrated if it takes you longer than you think it should. <strong>You
             may record videos of your screen in order to complete these without me being there with you. After you’ve
             practiced the steps once, go back and record yourself doing the steps again and name the resulting video
@@ -248,7 +248,8 @@
 
     <h2 id="ksh">ksh</h2>
 
-    <p>Be warned: in this half of the lesson I will ask you to do things without explaining each step.</p>
+    <p>Be warned: in this half of the lesson I will ask you to do things without explaining each step. Use the <code>man</code>
+        command to look up information about different commands. For example: <code>man pkg_add</code></p>
 
     <p>You must use your OpenBSD virtual machine for this part of the exercise, so boot it up and log into the <code>csp</code>
         user. I'll refer to the &quot;prompt&quot; throughout this lesson and throughout the course. The ksh prompt
@@ -260,7 +261,7 @@
         in the password for the root account that I gave you. <code>su -l</code> changes you to the root user and
         allows you to execute commands that affect all users, and can also damage the system. Use this wisely!</p>
 
-    <p>Type <a href="https://www.openbsd.org/faq/faq15.html"><code>pkg_add -u</code></a> and wait for it to finish.</p>
+    <p>Type <code>pkg_add -u</code> and wait for it to finish.</p>
 
     <p>Type <code>pkg_add nano vim git curl</code> to install those four programs.</p>
 
