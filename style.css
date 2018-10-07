@@ -5,10 +5,15 @@ body {
     color: #b58900;
     font-family: monospace;
     font-size: 1.4em;
+    line-height: 1.5em;
 }
 
 header {
     text-align: center;
+}
+
+code {
+    border: 2px dashed #d33682;
 }
 
 .subtitle {
