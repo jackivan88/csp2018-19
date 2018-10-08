@@ -1,110 +1,97 @@
-<h2 id="ksh">ksh</h2>
-<p>You must use your OpenBSD virtual machine for this part of the exercise, so boot it up and log into the <code>csp</code> user. I'll refer to the &quot;prompt&quot; throughout this lesson and throughout the course. The ksh prompt ends in the $ symbol and indicates that you can type commands. Sometimes I will ask you to clear your terminal by typing <code>clear</code> and pressing Enter. This will erase the content of the command line, but it will not undo previous commands.</p>
-<p>In the virtual machine, type <code>su -l</code> and press <span class="keyboardShortcut">Enter</span>. Then type in the password for the root account that I gave you. <code>su -l</code> changes you to the root user and allows you to execute commands that affect all users, and can also damage the system. Use this wisely!</p>
-<p>Type <code>pkg_add -u</code> and wait for it to finish.</p>
-<p>Type <code>pkg_add nano vim git curl</code> to install those four programs.</p>
-<p>Type <code>exit</code> to drop back to your <code>csp</code> user’s shell.</p>
-<h3 id="checkpoint-14-pwd">Checkpoint 14: pwd</h3>
-<p>This command is an abbreviation for &quot;print working directory. This command shows you what directory (folder) you're in, which can be helpful if you are lost. Before you do anything else, just type <code>pwd</code> at the prompt and press <span class="keyboardShortcut">Enter</span>. Do this three times.<br />
-</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-15-cd">Checkpoint 15: cd</h3>
-<p>This command is an abbreviation for &quot;change directory.&quot; It allows you to move from one directory (folder) to another in the command line. It can also reset your working directory to your home directory, which can be much faster than changing directories one level at a time.</p>
-<p>Type <code>cd</code> and press <span class="keyboardShortcut">Enter</span>. Notice that nothing changed. This is because you just told the computer to change to the current directory.</p>
-<p>Type <code>cd Downloads</code> and press <span class="keyboardShortcut">Enter</span>. Check to see if your prompt now includes the Downloads folder just before the $ symbol. Now, any commands you execute will run in this directory (folder) instead of your home directory.</p>
-<p>Type <code>cd ..</code> and press <span class="keyboardShortcut">Enter</span>. Check to see what your current working directory is. It should be your home directory. If you're not sure, just type <code>pwd</code> and press <span class="keyboardShortcut">Enter</span> to check. If you went down another directory, you could type <code>cd ../..</code> to go back up twice with one command. We will practice this in the next checkpoint.</p>
-<p>Type <code>cd Mu</code> and press <span class="keyboardShortcut">Tab</span>. ksh should fill in the missing letters and show <code>cd Music/</code> instead. Now press <span class="keyboardShortcut">Enter</span>. When you're using the command line, you can press <span class="keyboardShortcut">Tab</span> to autocomplete the command, directory, or file that you are working on instead of typing the whole command.</p>
-<p>Next, type <code>cd ~</code> and notice that you're back in your home directory.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-16-mkdir">Checkpoint 16: mkdir</h3>
-<p>This command creates a new directory inside your working directory. You should be in your home directory. If not, type <code>cd           ~</code> and press <span class="keyboardShortcut">Enter</span> to go there. Then type <code>mkdir         test</code> and press <span class="keyboardShortcut">Enter</span> to create a directory called &quot;test&quot; inside your home directory. Then type <code>cd test</code> and press <span class="keyboardShortcut">Enter</span> to go down into the directory you just created.</p>
-<p>Type <code>mkdir anotherTest</code> and press <span class="keyboardShortcut">Enter</span> to create another directory inside the &quot;test&quot; directory. Then type <code>cd         anotherTest</code> and press <span class="keyboardShortcut">Enter</span> to go down into this new directory.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-17-ls">Checkpoint 17: ls</h3>
-<p>This command lists the files and directories inside the current working directory. Type <code>cd ~</code> and press <span class="keyboardShortcut">Enter</span> to go back to your home directory. Then type <code>ls</code> and press <span class="keyboardShortcut">Enter</span> to see what's inside the directory.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-18-rmdir">Checkpoint 18: rmdir</h3>
-<p>This command removes directories. Type <code>cd ~</code> and press <span class="keyboardShortcut">Enter</span> to return to your home directory. Then navigate down to the &quot;test&quot; directory. Type <code>rmdir anotherTest</code> and press <span class="keyboardShortcut">Enter</span> to delete the &quot;anotherTest&quot; directory and then use <code>ls</code> to make sure it has been deleted. Go back to your home directory and delete the &quot;test&quot; directory. Use <code>ls</code> to make sure you have removed it. When you check your home directory in the file browser you should see that both directories are gone.</p>
-<p>Now, type <code>mkdir -p test/anotherTest</code> and press <span class="keyboardShortcut">Enter</span>. The <code>-p</code> is what we call a flag and it allows us to modify commands to do something slightly different. In this case, the <code>-p</code> flag allows us to create two directories, one inside the other, at the same time. Now type <code>rmdir            test</code> and see what happens.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-19-pushd-popd">Checkpoint 19: pushd, popd</h3>
-<p>These two commands allow you to quickly switch between different directories. It works a little differently in ksh than in PowerShell.</p>
-<p>First, type <code>mkdir -p test/anotherTest/yetAnotherTest</code> and press <span class="keyboardShortcut">Enter</span>. Then type <code>pushd         test/anotherTest/yetAnotherTest</code> and see what happens. Confirm that you're in the &quot;yetAnotherTest&quot; directory with <code>pwd</code>.</p>
-<p>Then type <code>popd</code> and press <span class="keyboardShortcut">Enter</span>. Now where are you? Confirm this with <code>pwd</code>.</p>
-<p>Use <code>ls</code> and <code>pushd</code> to move to another directory and then use <code>popd</code> to move back. Try this at least three more times using different directories.</p>
-<p>Now, type <code>cd ~</code> and press <span class="keyboardShortcut">Enter</span>. Then type <code>pushd            test/anotherTest/yetAnotherTest</code> and press <span class="keyboardShortcut">Enter</span>. Navigate to any other directory besides &quot;test&quot; and then type <code>pushd</code> and press <span class="keyboardShortcut">Enter</span>.</p>
-<p>When you run a command all by itself, you're running it without any arguments. What happened when you ran <code>pushd</code> without any arguments?</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-20-touch">Checkpoint 20: touch</h3>
-<p>This command allows you to create new files. First, use <code>cd</code> to move to the &quot;yetAnotherTest&quot; directory. Once you get there, type <code>touch test.txt</code> and press <span class="keyboardShortcut">Enter</span>. Confirm you created a new file with <code>ls</code>.</p>
-<p>Then go back to your home directory using <code>cd</code> and type <code>touch test/anotherTest/yetAnotherTest/hello.txt</code> and press <span class="keyboardShortcut">Enter</span>. Then confirm you created a new file by typing <code>ls            test/anotherTest/yetAnotherTest/</code> and pressing Enter. You just created a file in a directory below your current working directory without actually moving there. Then you listed the contents of that directory without moving.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-21-cp">Checkpoint 21: cp</h3>
-<p>This command allows you to copy files and directories from one place to another as well as within the same directory. Files can be copied exactly or renamed when copied.</p>
-<p>Move to the &quot;yetAnotherTest&quot; directory. Type <code>cp hello.txt         howdy.txt</code> and press <span class="keyboardShortcut">Enter</span>. Then use <code>ls</code> to see if you now have three files - test.txt, hello.txt, and howdy.txt - in the directory. You just copied the file and renamed it at the same time.</p>
-<p>Type <code>mkdir pleaseStop</code> and press <span class="keyboardShortcut">Enter</span>. Then type <code>cp            hello.txt pleaseStop/</code> and press <span class="keyboardShortcut">Enter</span>. Now when you use <code>ls</code> you should see a new directory inside &quot;yetAnotherTest&quot;.</p>
-<p>Type <code>cp -r pleaseStop really</code> and press <span class="keyboardShortcut">Enter</span>. Then use <code>ls</code> to make sure that you can see the &quot;really&quot; directory. You just copied a directory and its contents to a new directory. The <code>-r</code> flag stands for &quot;recurse&quot; which affects the directory and all of its contents.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-22-mv">Checkpoint 22: mv</h3>
-<p>This command is similar to <code>cp</code> except that instead of copying the file, it moves the file to a new location. However, just like <code>cp</code>, <code>mv</code> can also rename files at the same time. In fact, most of the time you will use this command to rename files, not actually move them to a new place.</p>
-<p>Make sure you are in the &quot;yetAnotherTest&quot; directory and type <code>mv            test.txt whenWillThisEnd.txt</code> and press <span class="keyboardShortcut">Enter</span>. Then use <code>ls</code> to confirm that test.txt is now called whenWillThisEnd.txt instead.</p>
-<p>Now type <code>mv really yesReally</code> and press <span class="keyboardShortcut">Enter</span>. You can use <code>ls</code> to make sure you've renamed the directory correctly.</p>
-<p>Now use <code>mv</code> to rename whenWillThisEnd.txt and &quot;yesReally&quot; back to their original names.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-23-less">Checkpoint 23: less</h3>
-<p>This command is used to display the contents of a text file, especially files that are too long to fit into your terminal window.</p>
-<p>Use cd to move to the &quot;yetAnotherTest&quot; directory. Then type <code>curl           -O</code> and the <a href="loremIpsum.txt">URL (link) of the loremIpsum.txt file</a> to download the file to the working directory.</p>
-<p>Then type <code>less loremIpsum.txt</code> and notice that the whole file is too large to display in your terminal window. Use the space bar to display the next section until you have seen the whole file. This is called paging.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-24-cat">Checkpoint 24: cat</h3>
-<p>Unlike the last command, this one streams the file to your terminal without any paging. But you can also stream multiple files to your terminal. First, press the Home button and open &quot;yetAnotherTest&quot; in the Browse Files application and add some text to each text file besides loremIpsum.txt using your text editor. Save each file and then move on.</p>
-<p>Type <code>cat loremIpsum.txt</code> and press <span class="keyboardShortcut">Enter</span>.</p>
-<p>Type <code>cat loremIpsum.txt hello.txt test.txt</code> and press <span class="keyboardShortcut">Enter</span>. Then try the command with the text files in a different order.</p>
-<p>Can you stream the same file more than once in the same command? What happens if the output is too long for your terminal window?</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-25-rm">Checkpoint 25: rm</h3>
-<p>Now we're going to clean up our files and directories from this lesson using the <code>rm</code> and <code>rmdir</code> commands.</p>
-<p>Make sure you're in the &quot;yetAnotherTest&quot; directory. Then type <code>rm            loremIpsum.txt</code> and press <span class="keyboardShortcut">Enter</span>. Use <code>ls</code> to see if the file is gone. Then use rm to delete all the other files in the directory.</p>
-<p>Now try to use <code>rmdir</code> to delete the &quot;pleaseStop&quot; and &quot;really&quot; directories. Does it work? In ksh you will get an error, but in PowerShell you are able to decide what to do with directories that aren't empty.</p>
-<p>Now use <code>cd</code> to go to your home directory. Then type <code>rm -rf test</code> in order to delete the whole directory, including its contents. The <code>-f</code> flag means &quot;force&quot; which deletes the directory even if there are things inside it.</p>
-<p>Both commands can delete directories and files, but which one do you use to delete files in the working directory? You should always use <code>rm</code> and <code>rmdir</code> very carefully since it's easy to damage your system by accidentally deleting files.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
-<h3 id="checkpoint-26-exit">Checkpoint 26: exit</h3>
-<p>This command allows you to close the terminal. Type <code>exit</code> and press Enter to close the terminal. You can then power down your virtual machine.</p>
-<p class="checkpoint">
-Raise your hand and have Mr. Olinda verify this checkpoint.
-</p>
+<p>Git is a type of version control system. We use version control systems to help us track the changes to programs, documents, and other forms of information. This allows us to undo mistakes in our work and preserve the history of our information if we need to refer to it. Git is also the foundation for collaborative software development sites like Github, Gitlab, and BitBucket.</p>
+<p>We're going to learn how to properly use Git from the command line. Get out your Git Cheat Sheet and highlight the following commands since you'll use them all the time: <code>git pull</code>, <code>git add</code>, <code>git commit</code>, and <code>git push</code>.</p>
+<h2 id="checkpoint-1-configure-git">Checkpoint 1: Configure Git</h2>
+<p>Although you may have already configured Git for this class, go ahead and double-check your settings. Open Git Bash from the Start Menu.</p>
+<p>Type <code>git config --global user.name &quot;Your Name&quot;</code>, replacing &quot;Your Name&quot; with your actual first and last name. Then press Enter. This helps other developers know who made the changes in the Git repository.</p>
+<p>Type <code>git config --global user.email &quot;yourname@students.chapelfield.org&quot;</code>, replacing &quot;yourname@seoulchristian.org&quot; with your school email address. Then press Enter. This helps other developers know where to contact you.</p>
+<p>Type <code>git config --global color.ui auto</code> and press Enter. This adds some color to the command line output to help you read it more easily.</p>
+<p>Then type <code>git config --list</code> and press Enter to make sure you've set everything properly.</p>
+<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-2-git-tutorials">Checkpoint 2: Git Tutorials</h2>
+<p>Watch the two videos below to learn what version control and Git are conceptually (subtitles are available):</p>
+<p>Go to the <a href="http://git.rocks/getting-started/">Getting Started with Git tutorial</a> and complete it. Continue through all the tutorials.</p>
+<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-3-create-a-repository">Checkpoint 3: Create a Repository</h2>
+<p>Now we're going to try this for real. Open Git Bash (or Terminal on Mac) and type <code>mkdir projects</code> and press Enter. Then use <code>cd</code> to enter the &quot;projects&quot; directory and type <code>git init usingGit</code> and press Enter. You've just created a repository called &quot;usingGit&quot; on your computer.</p>
+<p>Make sure you're still in the &quot;projects&quot; directory and type <code>git clone git@github.com:seoul-christian-school/csp2016-17.git</code> and press Enter.</p>
+<p>Then use <code>cd</code> and <code>ls</code> to check out the contents of both the &quot;usingGit&quot; and &quot;csp2016-17&quot; directories. What is in each one?</p>
+<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-4-make-changes">Checkpoint 4: Make Changes</h2>
+<p>In Git Bash, go to your &quot;usingGit&quot; repository. Type git status and press Enter. You should see a message telling you there are no changes. Now type <code>touch first.txt</code> and press Enter. Then type <code>vim first.txt</code> and press Enter. You'll now see a different interface. This is the Vim text editor installed on almost every Unix or Linux machine. Another one you might see is Nano. To edit the file, you need to change to &quot;insert&quot; mode by pressing the letter i on your keyboard.</p>
+<p>Now that you're in insert mode, type <code>Here is some text.</code> into the file. Then press Escape on your keyboard to go back to normal mode. Then type <code>:wq</code> and press Enter to save (write) your changes and quit Vim.</p>
+<p>Now type <code>git status</code> and press Enter. You should see something similar to this:</p>
+<div class="figure">
+<img src="images/mintty_2016-09-07_15-42-59.png" title="The output of git status." alt="The output of git status." width="800" height="422" />
+<p class="caption">The output of git status.</p>
+</div>
+<p>You'll notice that it gives you instructions on what to do next. Go ahead and type <code>git add first.txt</code> and press Enter to add the file to version control. Then use <code>git status</code> again to see what's changed.</p>
+<p>Then type <code>git commit -m &quot;Add first.txt to version control&quot;</code> and press Enter. This records the current version of the file in Git. The <code>-m</code> flag tells Git you are going to type a message after the command. If you don't use the <code>-m</code> flag then it will bring up a Vim window where you can type your message.</p>
+<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-5-branching">Checkpoint 5: Branching</h2>
+<p>Sometimes we need to work on certain parts of a project without disturbing the master version, which is called the &quot;master branch&quot; in Git. To do that, simply type <code>git branch special</code> and press Enter. Now type <code>git branch</code> to see the branches in your repository. The one you're currently on is green.</p>
+<p>Now type <code>git checkout special</code> and press Enter to switch the the special branch. Use git branch again to see what's changed.</p>
+<div class="figure">
+<img src="images/mintty_2016-09-07_16-20-35.png" title="Git checkout changes." alt="Git checkout changes." width="800" height="422" />
+<p class="caption">Git checkout changes.</p>
+</div>
+<p>Now, type <code>vim second.txt</code> and press Enter. Add some text to the file just like you did last time and save it. Then use <code>git add</code> and <code>git commit -m</code> to save the new file into Git. Then type <code>git checkout master</code> and press Enter to switch back to the master branch.</p>
+<p>Type <code>git merge special</code> and press Enter. This pulls all the information you created in the &quot;special&quot; branch into the &quot;master&quot; branch. If you visualize this, it is like a road that goes from one lane to two lanes, and then back to one lane. The information is split into two (or more branches) and then brought back into one.</p>
+<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-6-delete-and-rename">Checkpoint 6: Delete and Rename</h2>
+<p>You already know how to delete and rename files using <code>rm</code> and <code>mv</code>. When you're working with files in Git, you <em>can</em> use those tools, but it's better to use <code>git rm</code> and <code>git mv</code> to save some steps.</p>
+<p>Type <code>touch deleteThisFile.txt renameThisFile.txt</code> and press Enter. Then type <code>git add *</code> to add all untracked files to version control. Then use <code>git commit -m</code> to save your changes.</p>
+<p>Type <code>git rm deleteThisFile.txt</code> and press Enter. This command both removes the file from the directory and also tells Git about the change. Use <code>git status</code> to see the effects of this command. If you just wanted to remove the file from version control without deleting the file, you would use <code>git rm --cached</code>.</p>
+<p>Use <code>git commit -m</code> to save your changes.</p>
+<p>Type <code>git mv renameThisFile.txt third.txt</code> and press Enter. This renames the file and tells Git about the change. Use <code>git status</code> to see the effects of this command.</p>
+<p>Use <code>git commit -m</code> to save your changes.</p>
+<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-7-gitignore">Checkpoint 7: gitignore</h2>
+<p>Git can be configured to ignore certain files, types of files, or directories. This can be helpful if you're working on a group project and are keeping notes in the directory that aren't going to help other users. You need it, but other people don't, so you configure Git to ignore it.</p>
+<p>First, create a new file called &quot;ignore.txt&quot; in your &quot;usingGit&quot; directory. Then type <code>vim .gitignore</code> and press Enter. Once you're in Vim, press i to enter the editing mode and type <code>ignore.txt</code>. Then press Escape and type <code>:wq</code> and press Enter to save and quit Vim. Now, when you use git status, you should only see the new .gitignore file to be added. Use <code>git add</code> to track this file and then commit it.<br />
+Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-8-stashing">Checkpoint 8: Stashing</h2>
+<p>When you make changes to a repository, but you haven't committed them yet, you can store the changes and changed (or even deleted) files without deleting them permanently. This allows you to save them to apply them later, even after another commit.</p>
+<p>First, create three text files using <code>touch</code> and then add them to Git. Now, if you use <code>git status</code> you'll see the pending changes. But instead of using <code>git commit</code>, type <code>git stash save</code>. You'll see a message explaining where the files are located. Now use <code>ls</code> to verify the new files aren't present. The directory should look just like it did after your last commit. Type <code>git stash pop</code> to bring the files back. Use <code>ls</code> to make sure it worked.</p>
+<p>Then, add and commit the new files. Now use <code>git rm</code> to delete all three files in one command. But before you commit, use <code>git stash</code> (you don't have to type &quot;save&quot; at the end) to save the changes in memory and restore the directory to your last commit. Now, you should see the files back in place. Using <code>git stash pop</code> will delete them again. Go ahead and add and commit the changes.<br />
+Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-9-history">Checkpoint 9: History</h2>
+<p>Especially when you're working with other people, it is important to find out when certain changes were made and who made them. This is when you use <code>git log</code>.</p>
+<p>Type <code>git log</code> and press Enter to see what happens. The output is &quot;piped&quot; into less, so you can scroll through it with the Space Bar and press q to quit. All the commits should be by you, of course.</p>
+<p>Now, type <code>git log --grep=</code> and add a search word. Grep is a search tool used in Unix and Linux systems. If any commits match that word, they will appear when you press Enter. Now figure out how to search for more than one word at a time. Then type <code>git log --help</code> and press Enter to open the manual page in your browser. Try at least two other options for searching through the history of your repository.<br />
+Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-10-oops...">Checkpoint 10: Oops...</h2>
+<p>Sometimes you'll make a mistake and not realize it until after you commit. You have two options. You can reset the commit history back to a chosen commit and preserve your files, or you can reset back to a chosen commit and remove all the file changes since then.</p>
+<p>Go ahead and create several new text files, add them, and commit them. Then edit the files using Vim so that all of the new files contain different text. Then commit them.</p>
+<p>Now use <code>git log</code> to pull up your commit history. Choose the second-most-recent commit (yours will be different than the example below) and highlight the commit ID. Then copy it.</p>
+<div class="figure">
+<img src="images/mintty_2016-09-09_08-19-20.png" title="Highlight and copy a commit ID" alt="Highlight and copy a commit ID" width="800" height="422" />
+<p class="caption">Highlight and copy a commit ID</p>
+</div>
+<p>Now type <code>git reset</code> and paste in the commit ID you just copied. This will undo your last commit but save the files that you changed.</p>
+<p>Now use <code>git log</code> to pull up your commit history. Choose the second-most-recent commit and highlight the commit ID. Then copy it.</p>
+<p>Now type <code>git reset --hard</code> and paste in the commit ID you just copied. This will undo the last commit and also remove the files. Your directory should now appear as it did at the end of Checkpoint 10.<br />
+Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-11-syncing">Checkpoint 11: Syncing</h2>
+<p>When you're working with a remote repository, meaning one that is hosted on a different computer than yours, you must sync it if you want your changes to be reflected for other users. The two most commonly used tools for syncing are <code>git pull</code> and <code>git push</code>.</p>
+<p>Change to the &quot;csp2016-17&quot; directory. Then type <code>git pull</code>. You should see a number of changes added to your copy of the repository. You are now synced with my copy of the course website. In fact, you can open this lesson in your browser by going to the directory in Windows Explorer or Finder and opening usingGit.html.</p>
+<p>Now you should change to the &quot;usingGitPush&quot; subdirectory and create a text file. The file should be yourName.txt, replacing &quot;yourName&quot; with your name. Then add and commit the file, and type <code>git push</code> and press Enter. If you get an error saying that you are behind the current commit, then type <code>git pull --rebase</code> and press Enter. Then type <code>git push</code> and press Enter.</p>
+<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<h2 id="checkpoint-12-good-git-commits">Checkpoint 12: Good Git Commits</h2>
+<p>There are seven rules for good Git commits. <a href="http://chris.beams.io/posts/git-commit/">Read this excellent explanation of the seven rules by Chris Beams</a>. Basically, you need to make sure that your commits:</p>
+<ol style="list-style-type: decimal">
+<li>Separate subject from body with a blank line;</li>
+<li>Limit the subject line to 50 characters;</li>
+<li>Capitalize the subject line;</li>
+<li>Do not end the subject line with a period;</li>
+<li>Use the imperative mood in the subject line;</li>
+<li>Wrap the body at 72 characters; and</li>
+<li>Use the body to explain what and why vs. how.</li>
+</ol>
+<p>Note that rules one, six, and seven only apply when you're writing a commit message that has a body. Most of your commits won't. Create a text file in your &quot;usingGit&quot; repository that contains the seven rules and then add and commit it. Make sure your commit message follows the seven rules exactly.</p>
+<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 <h2 id="study-tips">Study Tips</h2>
 <ul>
-<li>Understand what the PowerShell or ksh commands <em>do</em> when you use them.</li>
-<li>Understand that the same task can sometimes be accomplished with different commands.<br />
-</li>
-<li>Understand the difference between commands (example: cp), flags (example: -r), and arguments (example: foo.md).</li>
-<li>Practice constructing valid command prompt statements using different commands, flags, and arguments.</li>
-<li>Practice labeling the different parts of command prompt statements.<br />
-</li>
+<li>Understand how to produce a specific result using general instructions.</li>
+<li>Know the seven rules of a good git commit from memory and be able to generate good Git commits.</li>
+<li>Understand the <em>best</em> way to accomplish a task in Git, even when there is another solution using Bash or PowerShell commands.</li>
 </ul>

@@ -1,11 +1,12 @@
 body {
     max-width: 800px;
-    margin: auto;
+    margin: 20px auto;
     background: #073642;
     color: #b58900;
     font-family: monospace;
     font-size: 1.4em;
     line-height: 1.5em;
+    padding: 0 5px;
 }
 
 header {
@@ -14,6 +15,11 @@ header {
 
 code {
     border: 1px dashed #d33682;
+}
+
+#homeButton {
+    display: flex;
+    justify-content: center;
 }
 
 .subtitle {
