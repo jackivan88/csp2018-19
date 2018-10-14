@@ -1,126 +1,143 @@
-# Using Nano
+# Writing in Markdown
 
-You'll need to use your OpenBSD 6.3 VM for this lesson. Boot it up and log into the csp user.
+Markdown is a markup system originally developed by John Gruber.
+According to his website:
 
-## Checkpoint 1: Launching Nano
+> Markdown is a text-to-HTML conversion tool for web writers. Markdown
+> allows you to write using an easy-to-read, easy-to-write plain text
+> format, then convert it to structurally valid XHTML (or HTML).
+>
+> Thus, “Markdown” is two things: (1) a plain text formatting syntax;
+> and (2) a software tool, written in Perl, that converts the plain text
+> formatting to HTML. See the Syntax page for details pertaining to
+> Markdown’s formatting syntax. You can try it out, right now, using the
+> online Dingus.
+>
+> The overriding design goal for Markdown’s formatting syntax is to make
+> it as readable as possible. The idea is that a Markdown-formatted
+> document should be publishable as-is, as plain text, without looking
+> like it’s been marked up with tags or formatting instructions. While
+> Markdown’s syntax has been influenced by several existing text-to-HTML
+> filters, the single biggest source of inspiration for Markdown’s
+> syntax is the format of plain text email.
 
-There are three ways to launch Nano. The first is launching it with only
-the `nano` command. The second is launching it and simultaneously creating
-a new file. The third is launching it and editing an existing file.
+Markdown is used by many developers and writers, and it's a tool you'll
+use throughout this year, especially in GitHub. You should keep your
+Markdown reference card handy while you complete this lesson.
 
-Open the terminal. Type `nano` without any arguments or flags and press
-Enter. You should see this:
+## Checkpoint 1: Markdown Tutorial
 
-![](images/chrome_2016-09-25_16-03-30.png "What you should see when you launch nano without
-      any arguments."){width="800" height="485"}
+Complete all eight lessons in the [Markdown
+Tutorial](http://www.markdowntutorial.com/).
 
-Close Nano by pressing Control-X. Now, type `nano foo.md` and press
-Enter. You should see this:
+    <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you
+        complete each step from this checkpoint and submit the videos for credit.</p>
 
-![](images/chrome_2016-09-25_16-09-29.png "This is what you should see when you launch Nano
-      with a new file argument."){width="800" height="485"}
+## Checkpoint 2: txti
 
-You can see at the top of the terminal that the file name is listed.
-Type in a sentence or two and then close Nano by pressing Control-X.
-This time, Nano will ask you to confirm your changes by pressing Y, or
-discard them by pressing N. You can cancel by pressing Control-C. Save
-your changes and confirm the filename by pressing Enter.
+Although you can use any text editor to write Markdown, not all editors
+can preview what it will look like when you're ready to print or
+publish. So we will use a web service that will let you see the results
+quickly so you can make changes and correct mistakes.
 
-Now type `nano foo.md` and press Enter. You should see the same file
-again. Add a new line at the bottom of the file and type
-`I've completed Checkpoint 1`. The close the file by pressing Control-X.
-Press Y, but this time change the name of the file to `checkpoint1.md`
-before you press Enter.
+Go to [txti.es](http://txti.es/) in another tab. This website allows you
+to publish extremely simple pages online using Markdown. In the text
+box, type in the following text, including the blank lines:
 
-Stream the contents of the new file to your terminal using `cat` and
-then raise your hand.
+```
+# This is a heading
 
-Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you complete each step from this checkpoint and submit the videos for credit.
+This is a paragraph. Paragraphs are awesome.
 
-## Checkpoint 2: Saving
+You can start a new paragraph by leaving a blank line
 
-Open `foo.md` in nano and delete all the text inside. Then press
-Control-O to save the file without closing it. If you've done this
-correctly, your screen should look like this:
+between lines of text.
 
-![](images/chrome_2016-09-25_18-24-59.png "What you should see if you've saved the file
-      correctly."){width="800" height="485"}
+If you don't leave a blank line
+the next line will be a part of the same paragraph.
+```
 
-Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you complete each step from this checkpoint and submit the videos for credit.
+Your screen should look like this when you are done:
 
-## Checkpoint 3: Read File
+![](images/firefox_2016-09-29_11-53-50.png){width="800" height="571"}
 
-You should still have `foo.md` open from the last checkpoint. If not,
-open it now. Then press Control-R to read another file and insert it
-into the current file. Type in `checkpoint1.md` when it prompts you and
-press Enter. Now `foo.md` contains the exact contents of
-`checkpoint1.md`.
+Go ahead and press Save and done. On the next screen it will ask you
+for your email. Type in your school email address and click "Email the
+below info. Then open the page you just created by clicking the
+viewing link.
 
-![](images/chrome_2016-09-25_18-31-33.png "You should see something similar after you read
-      the contents of checkpoint1.md into foo.md."){width="800"
-height="485"}
+    <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you
+        complete each step from this checkpoint and submit the videos for credit.</p>
 
-What happens if you run this command on a file that's not empty? Go
-ahead and exit Nano, and be sure to save your changes.
+## Checkpoint 3: Italics and Bold
 
-Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you complete each step from this checkpoint and submit the videos for credit.
+Go to the edit link for your page by adding `/edit` at the end of the
+URL and pressing Enter. Make the first sentence of the first paragraph
+italicized by putting underscores (the \_ character) on either side of
+it. Make the second sentence of the first paragraph bold by putting two
+asterisks (the \* character) on either side of it. Scroll to the bottom
+of the page and put in your edit code that was emailed to you. Then
+press Save and done.
 
-## Checkpoint 4: Getting Help\
+    <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you
+        complete each step from this checkpoint and submit the videos for credit.</p>
 
-Open Nano and press Control-G. This takes you to the manual for the
-program if you ever need to reference it while you're working. Skim
-through the whole file before moving on.
+## Checkpoint 4: Lists
 
-Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you complete each step from this checkpoint and submit the videos for credit.
+Go to the edit link for your page by adding `/edit` at the end of the
+URL and pressing Enter. Add an ordered list (a list that is numbered) of
+five items to your website. Remember to put the number at the very
+beginning of the line, followed by a period and a space. It's better to
+start each list item with a `1. ` so that you can rearrange them later
+without having to change the numbers.
 
-## Checkpoint 5: Copy, Cut, and Paste
+Then create an unordered list (a list that uses bullet points) of five
+items to your website. Remember to start each line with an asterisk and
+a space. Scroll to the bottom of the page and put in your edit code that
+was emailed to you. Then press Save and done.
 
-Type the following, including blank lines, into a new file called
-`checkpoint5.md`:
+    <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you
+        complete each step from this checkpoint and submit the videos for credit.</p>
 
-![](images/chrome_2016-09-25_19-00-05.png){width="800" height="485"}
+## Checkpoint 5: Blockquotes
 
-Now, move your cursor to the beginning of one of the numbered lines
-using the arrow keys. Press Control-K to cut the line. Then move your
-cursor somewhere else in the list and press Control-U to uncut (paste)
-the text in. Try this in other places until you're comfortable, and then
-move everything back to the original layout.
+Go to the edit link for your page by adding `/edit` at the end of the
+URL and pressing Enter. Whenever you quote text from another source in a
+web page, you should use the blockquote tag. In Markdown, we indicate
+the start of a blockquote with the &gt; symbol. Copy this paragraph into
+your page and add the &gt; symbol and a space at the beginning of the
+paragraph. Scroll to the bottom of the page and put in your edit code
+that was emailed to you. Then press Save and done.
 
-Then press Alt-A (Alt is the Meta key in Nano) to start highlighting,
-and then use the arrow keys to move around and highlight text. Then
-press Alt-6 to copy the highlighted text. Go ahead and paste it
-somewhere else. Then remove the extra text using Control-K until the
-file looks like the original. Exit and save.
+*If the quote doesn't appear indented and you can see the &gt; symbol,
+that means there is a problem with txti, not your Markdown formatting.
+This isn't something you can fix, so you can move on to the next
+checkpoint.*
 
-Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you complete each step from this checkpoint and submit the videos for credit.
+    <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you
+        complete each step from this checkpoint and submit the videos for credit.</p>
 
-## Checkpoint 6: Find and Replace
+## Checkpoint 6: Links and Images
 
-Open a new file in Nano called `checkpoint6.md` and use Control-R to read
-the contents of `checkpoint5.md` into it. Then save the file. Now, press
-Control-W and find the word "rice" in the file. You'll notice that once
-you press Enter the cursor moves to the beginning of the word you
-searched for. Try this with several different words.
+Go to the edit link for your page by adding `/edit` at the end of the
+URL and pressing Enter. To create a link to another page, you surround
+the text you want linked with \[ and \] and the actual link with ( and
+). Create a link to this page in your website.
 
-Now use Control-\\ to search for a word and then replace it. In this
-case, we will search for the word "Rice" and replace it with the words
-"Brown rice". Try doing this with several other words.
+To add images, we use the same syntax as with links, except you put a `!`
+in front of the \[link text\] to tell the computer it is an image, not a
+traditional link. Go ahead and copy the link to the picture in
+Checkpoint 2 and then insert it into your website. Scroll to the bottom
+of the page and put in your edit code that was emailed to you. Then
+press Save and done.
 
-Now do a search for the word "Here" and replace it with "There". But
-this time, instead of just confirming the change, we want to press A to
-change all occurrences of "Here" at the same time.
-
-![](images/2016-09-25_20-06-54.gif){width="800" height="486"}
-
-Notice that your last search is saved every time you search, so you can
-just press enter to do the same search again. Then save and exit.
-
-Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you complete each step from this checkpoint and submit the videos for credit.
+    <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you
+        complete each step from this checkpoint and submit the videos for credit.</p>
 
 ## Study Tips
 
-1.  Understand how to use all of the commands at the bottom of the Nano
-    interface and know how to look for help in the Nano help file.
-2.  Understand how to create, open, edit, and save text files using
-    Nano.\
-
+1.  Practice writing in Markdown until you know the basics you studied -
+    especially links and images - in this lesson by memory.
+2.  Dedicated Markdown editors like
+    [StackEdit](https://stackedit.io/editor) can help you see changes
+    that you make in real time if you need more practice.
