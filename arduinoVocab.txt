@@ -25,19 +25,19 @@ sqrt()	Calculates the square root of a number.
 cos()	Calculates the cosine of an angle (in radians).
 sin()	Calculates the sine of an angle (in radians).
 tan()	Calculates the tangent of an angle (in radians).
-isAlpha() 
-isAlphaNumeric() 
-isAscii() 
-isControl() 
-isDigit() 
-isGraph() 
-isHexadecimalDigit() 
-isLowerCase() 
-isPrintable() 
-isPunct() 
-isSpace() 
-isUpperCase() 
-isWhitespace() 
+isAlpha()	Analyse if a char is alpha (that is a letter).
+isAlphaNumeric()	Analyse if a char is alphanumeric (that is a letter or a numbers).
+isAscii()	Analyse if a char is Ascii.
+isControl()	Analyse if a char is a control character.
+isDigit()	Analyse if a char is a digit (that is a number).
+isGraph()	Analyse if a char is printable with some content (space is printable but has no content).
+isHexadecimalDigit()	Analyse if a char is an hexadecimal digit (A-F, 0-9).
+isLowerCase()	Analyse if a char is lower case (that is a letter in lower case).
+isPrintable()	Analyse if a char is printable (that is any character that produces an output, even a blank space).
+isPunct()	Analyse if a char is punctuation (that is a comma, a semicolon, an exlamation mark and so on).
+isSpace() Analyse if a char is the space character.
+isUpperCase()	Analyse if a char is upper case (that is, a letter in upper case).
+isWhitespace()	Analyse if a char is a white space, that is space, formfeed ('\f'), newline ('\n'), carriage return ('\r'), horizontal tab ('\t'), and vertical tab ('\v')).
 random() 
 randomSeed() 
 bit() 
