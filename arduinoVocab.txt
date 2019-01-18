@@ -1,0 +1,57 @@
+digitalRead()	Reads the value from a specified digital pin, either HIGH or LOW.
+digitalWrite()	Write a HIGH or a LOW value to a digital pin.
+pinMode()	Configures the specified pin to behave either as an input or an output.
+analogRead()	Reads the value from the specified analog pin.
+analogReference()	Configures the reference voltage used for analog input (i.e. the value used as the top of the input range).
+analogWrite()	Writes an analog value (PWM wave) to a pin.
+noTone()	Stops the generation of a square wave triggered by tone(). Has no effect if no tone is being generated.
+pulseIn()	Reads a pulse (either HIGH or LOW) on a pin.
+pulseInLong()	An alternative to pulseIn() which is better at handling long pulse and interrupt affected scenarios.
+shiftIn()	Shifts in a byte of data one bit at a time.
+shiftOut()	Shifts out a byte of data one bit at a time.
+tone()	Generates a square wave of the specified frequency (and 50% duty cycle) on a pin.
+delay()	Pauses the program for the amount of time (in milliseconds) specified as parameter.
+delayMicroseconds()	Pauses the program for the amount of time (in microseconds) specified as parameter.
+micros()	Returns the number of microseconds since the Arduino board began running the current program.
+millis()	Returns the number of milliseconds since the Arduino board began running the current program.
+abs()	Calculates the absolute value of a number.
+constrain()	Constrains a number to be within a range.
+map()	Re-maps a number from one range to another.
+max()	Calculates the maximum of two numbers.
+min()	Calculates the minimum of two numbers.
+pow() 
+sq() 
+sqrt() 
+cos() 
+sin() 
+tan() 
+isAlpha() 
+isAlphaNumeric() 
+isAscii() 
+isControl() 
+isDigit() 
+isGraph() 
+isHexadecimalDigit() 
+isLowerCase() 
+isPrintable() 
+isPunct() 
+isSpace() 
+isUpperCase() 
+isWhitespace() 
+random() 
+randomSeed() 
+bit() 
+bitClear() 
+bitRead() 
+bitSet() 
+bitWrite() 
+highByte() 
+lowByte() 
+attachInterrupt() 
+detachInterrupt() 
+interrupts() 
+noInterrupts() 
+Serial 
+stream 
+Keyboard 
+Mouse 
