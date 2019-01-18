@@ -19,12 +19,12 @@ constrain()	Constrains a number to be within a range.
 map()	Re-maps a number from one range to another.
 max()	Calculates the maximum of two numbers.
 min()	Calculates the minimum of two numbers.
-pow() 
-sq() 
-sqrt() 
-cos() 
-sin() 
-tan() 
+pow()	Calculates the value of a number raised to a power.
+sq()	Calculates the square of a number: the number multiplied by itself.
+sqrt()	Calculates the square root of a number.
+cos()	Calculates the cosine of an angle (in radians).
+sin()	Calculates the sine of an angle (in radians).
+tan()	Calculates the tangent of an angle (in radians).
 isAlpha() 
 isAlphaNumeric() 
 isAscii() 
