@@ -38,19 +38,19 @@ isPunct()	Analyse if a char is punctuation (that is a comma, a semicolon, an exl
 isSpace() Analyse if a char is the space character.
 isUpperCase()	Analyse if a char is upper case (that is, a letter in upper case).
 isWhitespace()	Analyse if a char is a white space, that is space, formfeed ('\f'), newline ('\n'), carriage return ('\r'), horizontal tab ('\t'), and vertical tab ('\v')).
-random() 
-randomSeed() 
-bit() 
-bitClear() 
-bitRead() 
-bitSet() 
-bitWrite() 
-highByte() 
-lowByte() 
-attachInterrupt() 
-detachInterrupt() 
-interrupts() 
-noInterrupts() 
+random()	The random function generates pseudo-random numbers.
+randomSeed()	randomSeed() initializes the pseudo-random number generator, causing it to start at an arbitrary point in its random sequence.
+bit()	Computes the value of the specified bit (bit 0 is 1, bit 1 is 2, bit 2 is 4, etc.).
+bitClear()	Clears (writes a 0 to) a bit of a numeric variable.
+bitRead()	Reads a bit of a number.
+bitSet()	Sets (writes a 1 to) a bit of a numeric variable.
+bitWrite()	Writes a bit of a numeric variable.
+highByte()	Extracts the high-order (leftmost) byte of a word (or the second lowest byte of a larger data type).
+lowByte()	Extracts the low-order (rightmost) byte of a variable (e.g. a word).
+attachInterrupt()	Configure a digital pin with an interrupt.
+detachInterrupt()	Turns off the given interrupt.
+interrupts()	Re-enables interrupts (after they’ve been disabled by nointerrupts().
+noInterrupts()	Disables interrupts (you can re-enable them with interrupts()).
 Serial	Used for communication between the Arduino board and a computer or other devices.
 stream	Stream is the base class for character and binary based streams.
 Keyboard	The keyboard functions enable 32u4 or SAMD micro based boards to send keystrokes to an attached computer through their micro’s native USB port.
