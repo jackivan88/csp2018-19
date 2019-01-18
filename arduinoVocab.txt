@@ -51,7 +51,7 @@ attachInterrupt()
 detachInterrupt() 
 interrupts() 
 noInterrupts() 
-Serial 
-stream 
-Keyboard 
-Mouse 
+Serial	Used for communication between the Arduino board and a computer or other devices.
+stream	Stream is the base class for character and binary based streams.
+Keyboard	The keyboard functions enable 32u4 or SAMD micro based boards to send keystrokes to an attached computer through their micro’s native USB port.
+Mouse	The mouse functions enable 32u4 or SAMD micro based boards to control cursor movement on a connected computer through their micro’s native USB port.
