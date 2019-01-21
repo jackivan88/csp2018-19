@@ -1,97 +1,293 @@
-<p>Git is a type of version control system. We use version control systems to help us track the changes to programs, documents, and other forms of information. This allows us to undo mistakes in our work and preserve the history of our information if we need to refer to it. Git is also the foundation for collaborative software development sites like Github, Gitlab, and BitBucket.</p>
-<p>We're going to learn how to properly use Git from the command line. Get out your Git Cheat Sheet and highlight the following commands since you'll use them all the time: <code>git pull</code>, <code>git add</code>, <code>git commit</code>, and <code>git push</code>.</p>
-<h2 id="checkpoint-1-configure-git">Checkpoint 1: Configure Git</h2>
-<p>Although you may have already configured Git for this class, go ahead and double-check your settings. Open Git Bash from the Start Menu.</p>
-<p>Type <code>git config --global user.name &quot;Your Name&quot;</code>, replacing &quot;Your Name&quot; with your actual first and last name. Then press Enter. This helps other developers know who made the changes in the Git repository.</p>
-<p>Type <code>git config --global user.email &quot;yourname@students.chapelfield.org&quot;</code>, replacing &quot;yourname@seoulchristian.org&quot; with your school email address. Then press Enter. This helps other developers know where to contact you.</p>
-<p>Type <code>git config --global color.ui auto</code> and press Enter. This adds some color to the command line output to help you read it more easily.</p>
-<p>Then type <code>git config --list</code> and press Enter to make sure you've set everything properly.</p>
-<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-2-git-tutorials">Checkpoint 2: Git Tutorials</h2>
-<p>Watch the two videos below to learn what version control and Git are conceptually (subtitles are available):</p>
-<p>Go to the <a href="http://git.rocks/getting-started/">Getting Started with Git tutorial</a> and complete it. Continue through all the tutorials.</p>
-<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-3-create-a-repository">Checkpoint 3: Create a Repository</h2>
-<p>Now we're going to try this for real. Open Git Bash (or Terminal on Mac) and type <code>mkdir projects</code> and press Enter. Then use <code>cd</code> to enter the &quot;projects&quot; directory and type <code>git init usingGit</code> and press Enter. You've just created a repository called &quot;usingGit&quot; on your computer.</p>
-<p>Make sure you're still in the &quot;projects&quot; directory and type <code>git clone git@github.com:seoul-christian-school/csp2016-17.git</code> and press Enter.</p>
-<p>Then use <code>cd</code> and <code>ls</code> to check out the contents of both the &quot;usingGit&quot; and &quot;csp2016-17&quot; directories. What is in each one?</p>
-<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-4-make-changes">Checkpoint 4: Make Changes</h2>
-<p>In Git Bash, go to your &quot;usingGit&quot; repository. Type git status and press Enter. You should see a message telling you there are no changes. Now type <code>touch first.txt</code> and press Enter. Then type <code>vim first.txt</code> and press Enter. You'll now see a different interface. This is the Vim text editor installed on almost every Unix or Linux machine. Another one you might see is Nano. To edit the file, you need to change to &quot;insert&quot; mode by pressing the letter i on your keyboard.</p>
-<p>Now that you're in insert mode, type <code>Here is some text.</code> into the file. Then press Escape on your keyboard to go back to normal mode. Then type <code>:wq</code> and press Enter to save (write) your changes and quit Vim.</p>
-<p>Now type <code>git status</code> and press Enter. You should see something similar to this:</p>
-<div class="figure">
-<img src="images/mintty_2016-09-07_15-42-59.png" title="The output of git status." alt="The output of git status." width="800" height="422" />
-<p class="caption">The output of git status.</p>
-</div>
-<p>You'll notice that it gives you instructions on what to do next. Go ahead and type <code>git add first.txt</code> and press Enter to add the file to version control. Then use <code>git status</code> again to see what's changed.</p>
-<p>Then type <code>git commit -m &quot;Add first.txt to version control&quot;</code> and press Enter. This records the current version of the file in Git. The <code>-m</code> flag tells Git you are going to type a message after the command. If you don't use the <code>-m</code> flag then it will bring up a Vim window where you can type your message.</p>
-<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-5-branching">Checkpoint 5: Branching</h2>
-<p>Sometimes we need to work on certain parts of a project without disturbing the master version, which is called the &quot;master branch&quot; in Git. To do that, simply type <code>git branch special</code> and press Enter. Now type <code>git branch</code> to see the branches in your repository. The one you're currently on is green.</p>
-<p>Now type <code>git checkout special</code> and press Enter to switch the the special branch. Use git branch again to see what's changed.</p>
-<div class="figure">
-<img src="images/mintty_2016-09-07_16-20-35.png" title="Git checkout changes." alt="Git checkout changes." width="800" height="422" />
-<p class="caption">Git checkout changes.</p>
-</div>
-<p>Now, type <code>vim second.txt</code> and press Enter. Add some text to the file just like you did last time and save it. Then use <code>git add</code> and <code>git commit -m</code> to save the new file into Git. Then type <code>git checkout master</code> and press Enter to switch back to the master branch.</p>
-<p>Type <code>git merge special</code> and press Enter. This pulls all the information you created in the &quot;special&quot; branch into the &quot;master&quot; branch. If you visualize this, it is like a road that goes from one lane to two lanes, and then back to one lane. The information is split into two (or more branches) and then brought back into one.</p>
-<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-6-delete-and-rename">Checkpoint 6: Delete and Rename</h2>
-<p>You already know how to delete and rename files using <code>rm</code> and <code>mv</code>. When you're working with files in Git, you <em>can</em> use those tools, but it's better to use <code>git rm</code> and <code>git mv</code> to save some steps.</p>
-<p>Type <code>touch deleteThisFile.txt renameThisFile.txt</code> and press Enter. Then type <code>git add *</code> to add all untracked files to version control. Then use <code>git commit -m</code> to save your changes.</p>
-<p>Type <code>git rm deleteThisFile.txt</code> and press Enter. This command both removes the file from the directory and also tells Git about the change. Use <code>git status</code> to see the effects of this command. If you just wanted to remove the file from version control without deleting the file, you would use <code>git rm --cached</code>.</p>
-<p>Use <code>git commit -m</code> to save your changes.</p>
-<p>Type <code>git mv renameThisFile.txt third.txt</code> and press Enter. This renames the file and tells Git about the change. Use <code>git status</code> to see the effects of this command.</p>
-<p>Use <code>git commit -m</code> to save your changes.</p>
-<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-7-gitignore">Checkpoint 7: gitignore</h2>
-<p>Git can be configured to ignore certain files, types of files, or directories. This can be helpful if you're working on a group project and are keeping notes in the directory that aren't going to help other users. You need it, but other people don't, so you configure Git to ignore it.</p>
-<p>First, create a new file called &quot;ignore.txt&quot; in your &quot;usingGit&quot; directory. Then type <code>vim .gitignore</code> and press Enter. Once you're in Vim, press i to enter the editing mode and type <code>ignore.txt</code>. Then press Escape and type <code>:wq</code> and press Enter to save and quit Vim. Now, when you use git status, you should only see the new .gitignore file to be added. Use <code>git add</code> to track this file and then commit it.<br />
-Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-8-stashing">Checkpoint 8: Stashing</h2>
-<p>When you make changes to a repository, but you haven't committed them yet, you can store the changes and changed (or even deleted) files without deleting them permanently. This allows you to save them to apply them later, even after another commit.</p>
-<p>First, create three text files using <code>touch</code> and then add them to Git. Now, if you use <code>git status</code> you'll see the pending changes. But instead of using <code>git commit</code>, type <code>git stash save</code>. You'll see a message explaining where the files are located. Now use <code>ls</code> to verify the new files aren't present. The directory should look just like it did after your last commit. Type <code>git stash pop</code> to bring the files back. Use <code>ls</code> to make sure it worked.</p>
-<p>Then, add and commit the new files. Now use <code>git rm</code> to delete all three files in one command. But before you commit, use <code>git stash</code> (you don't have to type &quot;save&quot; at the end) to save the changes in memory and restore the directory to your last commit. Now, you should see the files back in place. Using <code>git stash pop</code> will delete them again. Go ahead and add and commit the changes.<br />
-Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-9-history">Checkpoint 9: History</h2>
-<p>Especially when you're working with other people, it is important to find out when certain changes were made and who made them. This is when you use <code>git log</code>.</p>
-<p>Type <code>git log</code> and press Enter to see what happens. The output is &quot;piped&quot; into less, so you can scroll through it with the Space Bar and press q to quit. All the commits should be by you, of course.</p>
-<p>Now, type <code>git log --grep=</code> and add a search word. Grep is a search tool used in Unix and Linux systems. If any commits match that word, they will appear when you press Enter. Now figure out how to search for more than one word at a time. Then type <code>git log --help</code> and press Enter to open the manual page in your browser. Try at least two other options for searching through the history of your repository.<br />
-Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-10-oops...">Checkpoint 10: Oops...</h2>
-<p>Sometimes you'll make a mistake and not realize it until after you commit. You have two options. You can reset the commit history back to a chosen commit and preserve your files, or you can reset back to a chosen commit and remove all the file changes since then.</p>
-<p>Go ahead and create several new text files, add them, and commit them. Then edit the files using Vim so that all of the new files contain different text. Then commit them.</p>
-<p>Now use <code>git log</code> to pull up your commit history. Choose the second-most-recent commit (yours will be different than the example below) and highlight the commit ID. Then copy it.</p>
-<div class="figure">
-<img src="images/mintty_2016-09-09_08-19-20.png" title="Highlight and copy a commit ID" alt="Highlight and copy a commit ID" width="800" height="422" />
-<p class="caption">Highlight and copy a commit ID</p>
-</div>
-<p>Now type <code>git reset</code> and paste in the commit ID you just copied. This will undo your last commit but save the files that you changed.</p>
-<p>Now use <code>git log</code> to pull up your commit history. Choose the second-most-recent commit and highlight the commit ID. Then copy it.</p>
-<p>Now type <code>git reset --hard</code> and paste in the commit ID you just copied. This will undo the last commit and also remove the files. Your directory should now appear as it did at the end of Checkpoint 10.<br />
-Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-11-syncing">Checkpoint 11: Syncing</h2>
-<p>When you're working with a remote repository, meaning one that is hosted on a different computer than yours, you must sync it if you want your changes to be reflected for other users. The two most commonly used tools for syncing are <code>git pull</code> and <code>git push</code>.</p>
-<p>Change to the &quot;csp2016-17&quot; directory. Then type <code>git pull</code>. You should see a number of changes added to your copy of the repository. You are now synced with my copy of the course website. In fact, you can open this lesson in your browser by going to the directory in Windows Explorer or Finder and opening usingGit.html.</p>
-<p>Now you should change to the &quot;usingGitPush&quot; subdirectory and create a text file. The file should be yourName.txt, replacing &quot;yourName&quot; with your name. Then add and commit the file, and type <code>git push</code> and press Enter. If you get an error saying that you are behind the current commit, then type <code>git pull --rebase</code> and press Enter. Then type <code>git push</code> and press Enter.</p>
-<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="checkpoint-12-good-git-commits">Checkpoint 12: Good Git Commits</h2>
-<p>There are seven rules for good Git commits. <a href="http://chris.beams.io/posts/git-commit/">Read this excellent explanation of the seven rules by Chris Beams</a>. Basically, you need to make sure that your commits:</p>
-<ol style="list-style-type: decimal">
-<li>Separate subject from body with a blank line;</li>
-<li>Limit the subject line to 50 characters;</li>
-<li>Capitalize the subject line;</li>
-<li>Do not end the subject line with a period;</li>
-<li>Use the imperative mood in the subject line;</li>
-<li>Wrap the body at 72 characters; and</li>
-<li>Use the body to explain what and why vs. how.</li>
-</ol>
-<p>Note that rules one, six, and seven only apply when you're writing a commit message that has a body. Most of your commits won't. Create a text file in your &quot;usingGit&quot; repository that contains the seven rules and then add and commit it. Make sure your commit message follows the seven rules exactly.</p>
-<p>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-<h2 id="study-tips">Study Tips</h2>
+<h1 id="logic">Logic</h1>
+<p>We will study basic logic in the form of sentence logic as well as memorize the truth tables you will use most
+    frequently in programming. The exercises are taken with permission from the book <em>A Modern Formal Logic Primer</em>
+    by Paul Teller.</p>
+<h2 id="checkpoint-1-join-the-csp-2018-19-class-on-quizlet">Checkpoint 1: Join the CSP 2018-19 Class on Quizlet</h2>
+<p>Go to Quizlet and log in. If you’ve never created a Quizlet account, do so now using your school email. Then join
+    the CSP 2018-19 class so you have access to the logic truth tables that you will need to memorize.</p>
+<p class="checkpoint">
+    Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you
+    complete each step from this checkpoint and submit the videos for credit.
+</p>
+<h2 id="checkpoint-2-logic-as-the-science-of-argument">Checkpoint 2: Logic as the Science of Argument</h2>
+<p>You will <a href="aModernFormalLogicPrimer/1ch1.pdf">read Chapter 1 of <em>A Modern Formal Logic Primer</em> by Paul
+        Teller</a> for Checkpoints 2-7. This is expected to take place in class, and at any point you can stop and get
+    clarification from Mr. Olinda. Read pages 1-4 of Chapter 1 before completing the exercise.</p>
+<blockquote>
+    <p><strong>Exercise 1-1:</strong> Explain in your own words what an argument is. Give an example of your own of an
+        inductive argument and of a deductive argument. Explain why your example of an inductive argument is an
+        inductive argument and why your example of a deductive argument is a deductive argument.</p>
+</blockquote>
+<p>Your answer should be developed in writing and must be complete, simple, and concise. You will not move on to the
+    next checkpoint unless your answer addresses each part of the exercise. Break the exercise down into smaller pieces
+    and address each one. Write your answer as <a href="https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-2--Logic-as-the-Science-of-Argument.aspx">a
+        reply to this post</a>.</p>
+<p class="checkpoint">
+    Raise your hand and have Mr. Olinda verify this checkpoint.
+</p>
+<h2 id="checkpoint-3-sentences-and-connectives">Checkpoint 3: Sentences and Connectives</h2>
+<p>Read pages 4-7 of Chapter 1 before completing the exercise.</p>
+<blockquote>
+    <p><strong>Exercise 1-2:</strong> Transcribe the following sentences into sentence logic, using <code>G</code> to
+        transcribe <code>Pudding is good</code>. and <code>F</code> to transcribe <code>Pudding is fattening</code>.</p>
+    <ol type="1">
+        <li>
+            <p>Pudding is good and pudding is fattening.</p>
+        </li>
+        <li>
+            <p>Pudding is both good and fattening.</p>
+        </li>
+        <li>
+            <p>Pudding is either good or not fattening.</p>
+        </li>
+        <li>
+            <p>Pudding is not good and not fattening.</p>
+        </li>
+    </ol>
+    <p>You may well have a problem with the following transcriptions, because to do some of them right you need to know
+        something I haven’t told you yet. But please take a try before continuing. Trying for a few minutes will help
+        you to understand the discussion of the problem and its solution in the next section. And perhaps you will
+        figure out a way of solving the problem yourself!</p>
+    <ol start="5" type="1">
+        <li>
+            <p>Pudding is not both good and fattening.</p>
+        </li>
+        <li>
+            <p>Pudding is both not good and not fattening.</p>
+        </li>
+        <li>
+            <p>Pudding is not either good or fattening.</p>
+        </li>
+        <li>
+            <p>Pudding is either not good or not fattening.</p>
+        </li>
+        <li>
+            <p>Pudding is neither good nor fattening.</p>
+        </li>
+    </ol>
+</blockquote>
+<p class="checkpoint">
+    Raise your hand and have Mr. Olinda verify this checkpoint.
+</p>
+<h2 id="checkpoint-4-truth-tables-and-the-meaning-of-and-v">Checkpoint 4: Truth Tables and the Meaning of ~, &amp;, and
+    V</h2>
+<p>Read pages 7-9 of Chapter 1 and then write a one paragraph summary of Section 1-3 that is complete, simple, and
+    concise. Write your answer as <a href="https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-4--Truth-Tables-and-the-Meaning-of-~,-&amp;,-and-V.aspx">a
+        reply to this post</a>.</p>
+<p class="checkpoint">
+    Raise your hand and have Mr. Olinda verify this checkpoint.
+</p>
+<h2 id="checkpoint-5-truth-functions">Checkpoint 5: Truth Functions</h2>
+<p>Read pages 9-10 of Chapter 1 before completing the exercise.</p>
+<blockquote>
+    <p><strong>Exercise 1-3:</strong> Try to explain what it would be for a declarative compound sentence in English
+        not to be truth functional. Give an example of a declarative compound sentence in English that is not truth
+        functional. There are lots of them!</p>
+</blockquote>
+<p>Your answer should be developed in writing and must be complete, simple, and concise. You will not move on to the
+    next checkpoint unless your answer addresses each part of the exercise. Write your answer as <a href="https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-5--Truth-Functions.aspx">a
+        reply to this post</a>.</p>
+<p class="checkpoint">
+    Raise your hand and have Mr. Olinda verify this checkpoint.
+</p>
+<h2 id="checkpoint-6-compounding-compound-sentences">Checkpoint 6: Compounding Compound Sentences</h2>
+<p>Read pages 11-15 of Chapter 1 before completing the exercise.</p>
+<blockquote>
+    <p><strong>Exercise 1-4:</strong> For each of the following sentences, state whether its main connective is ~,
+        &amp;, or v and list each sentence’s components. Then do the same for the components you have listed until you
+        get down to atomic sentence letters. So you can see how you should present your answers, I have done the first
+        problem for you.</p>
+    <table style="width:75%;">
+        <colgroup>
+            <col style="width: 20%" />
+            <col style="width: 30%" />
+            <col style="width: 23%" />
+        </colgroup>
+        <tbody>
+            <tr class="odd">
+                <td style="text-align: center;"><strong>Sentence</strong></td>
+                <td style="text-align: center;"><strong>Main Connective</strong></td>
+                <td style="text-align: center;"><strong>Components</strong></td>
+            </tr>
+            <tr class="even">
+                <td style="text-align: center;"><sub>(Av</sub>B)</td>
+                <td style="text-align: center;">~</td>
+                <td style="text-align: center;">Av~B</td>
+            </tr>
+            <tr class="odd">
+                <td style="text-align: center;">Av~B</td>
+                <td style="text-align: center;">v</td>
+                <td style="text-align: center;">A, ~B</td>
+            </tr>
+            <tr class="even">
+                <td style="text-align: center;">~B</td>
+                <td style="text-align: center;">~</td>
+                <td style="text-align: center;">B</td>
+            </tr>
+        </tbody>
+    </table>
+    <ol type="1">
+        <li>
+            <p>(D&amp;~G)v(G&amp;D)</p>
+        </li>
+        <li>
+            <p>[(Dv~~B)&amp;(DvB)]&amp;(DvB)</p>
+        </li>
+        <li>
+            <p>L&amp;{Mv[<sub>N&amp;(Mv</sub>L)]}</p>
+        </li>
+    </ol>
+    <p>Work out the solutions on paper and only type in the final solution. For example, the solution for the sample
+        problem would be ~B.</p>
+</blockquote>
+<p class="checkpoint">
+    Raise your hand and have Mr. Olinda verify this checkpoint.
+</p>
+<h2 id="checkpoint-7-rules-of-formation-and-rules-of-valuation">Checkpoint 7: Rules of Formation and Rules of Valuation</h2>
+<p>Read pages 16-18 of Chapter 1 before completing the exercises.</p>
+<blockquote>
+    <p><strong>Exercise 1-5:</strong> Which of the following expressions are sentences of sentence logic and which are
+        not?</p>
+    <ol type="1">
+        <li>A&amp;~B</li>
+        <li>A~&amp;B</li>
+        <li>Gv(<sub>B&amp;</sub>H)</li>
+        <li>A&amp;(C&amp;~(DvH))</li>
+        <li>(A&amp;B)v(C&amp;D)</li>
+        <li>(AvB)&amp;CvD</li>
+    </ol>
+</blockquote>
+<p>Your answer should be developed in writing and must be complete, simple, and concise. You will not move on to the
+    next checkpoint unless your answer addresses each part of the exercise. Write your answer as <a href="https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-7--Rules-of-Formation-and-Rules-of-Valuation.aspx">a
+        reply to this post</a>.</p>
+<blockquote>
+    <p><strong>Exercise 1-6:</strong> Construct a complete truth table for each of the following sentences. The first
+        one is done for you:</p>
+    <table style="width:47%;">
+        <colgroup>
+            <col style="width: 9%" />
+            <col style="width: 9%" />
+            <col style="width: 12%" />
+            <col style="width: 15%" />
+        </colgroup>
+        <tbody>
+            <tr class="odd">
+                <td style="text-align: center;"><strong>A<br />
+                    </strong></td>
+                <td style="text-align: center;"><strong>B<br />
+                    </strong></td>
+                <td style="text-align: center;"><strong>~B<br />
+                    </strong></td>
+                <td style="text-align: center;"><strong>~BvA<br />
+                    </strong></td>
+            </tr>
+            <tr class="even">
+                <td style="text-align: center;">t<br />
+                </td>
+                <td style="text-align: center;">t<br />
+                </td>
+                <td style="text-align: center;">f<br />
+                </td>
+                <td style="text-align: center;">t<br />
+                </td>
+            </tr>
+            <tr class="odd">
+                <td style="text-align: center;">t<br />
+                </td>
+                <td style="text-align: center;">f<br />
+                </td>
+                <td style="text-align: center;">t<br />
+                </td>
+                <td style="text-align: center;">t<br />
+                </td>
+            </tr>
+            <tr class="even">
+                <td style="text-align: center;">f<br />
+                </td>
+                <td style="text-align: center;">t<br />
+                </td>
+                <td style="text-align: center;">f<br />
+                </td>
+                <td style="text-align: center;">f<br />
+                </td>
+            </tr>
+            <tr class="odd">
+                <td style="text-align: center;">f<br />
+                </td>
+                <td style="text-align: center;">f<br />
+                </td>
+                <td style="text-align: center;">t<br />
+                </td>
+                <td style="text-align: center;">t<br />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ol type="1">
+        <li>~BvA</li>
+        <li>~(BvA)</li>
+        <li>(QvT)&amp;(<sub>Qv</sub>T)</li>
+        <li>(D&amp;~G)v(G&amp;D)</li>
+        <li>Av(~BvC)</li>
+        <li>Kv[<sub>P&amp;(</sub>PvM)]</li>
+        <li>[(Dv~<sub>B)&amp;(Dv</sub>B)]&amp;(DvB)</li>
+        <li>L&amp;{Mv[<sub>N&amp;(</sub>Mv~L)]}</li>
+    </ol>
+</blockquote>
+<p>Complete the truth tables on a separate piece of paper.</p>
+<p class="checkpoint">
+    Raise your hand and have Mr. Olinda verify this checkpoint.
+</p>
+<h2 id="checkpoint-8-truth-tables">Checkpoint 8: Truth Tables</h2>
+<p>At this point you have been studying the truth tables for several days. In order to pass this checkpoint you must be
+    able to accurately answer at least 70% of these when quizzed verbally. Then you will take the graded quiz.</p>
+<h3>NOT True?</h3>
 <ul>
-<li>Understand how to produce a specific result using general instructions.</li>
-<li>Know the seven rules of a good git commit from memory and be able to generate good Git commits.</li>
-<li>Understand the <em>best</em> way to accomplish a task in Git, even when there is another solution using Bash or PowerShell commands.</li>
+    <li>not False ☞ True</li>
+    <li>not True ☞ False</li>
 </ul>
+<h3>OR True?</h3>
+<ul>
+    <li>True or False ☞ True</li>
+    <li>True or True ☞ True</li>
+    <li>False or True ☞ True</li>
+    <li>False or False ☞ False</li>
+</ul>
+<h3>AND True?</h3>
+<ul>
+    <li>True and False ☞ False</li>
+    <li>True and True ☞ True</li>
+    <li>False and True ☞ False</li>
+    <li>False and False ☞ False</li>
+</ul>
+<h3>NOT OR True?</h3>
+<ul>
+    <li>not (True or False) ☞ False</li>
+    <li>not (True or True) ☞ False</li>
+    <li>not (False or True) ☞ False</li>
+    <li>not (False or False) ☞ True</li>
+</ul>
+<h3>NOT AND True?</h3>
+<ul>
+    <li>not (True and False) ☞ True</li>
+    <li>not (True and True) ☞ False</li>
+    <li>not (False and True) ☞ True</li>
+    <li>not (False and False) ☞ True</li>
+</ul>
+<h3>!= True?</h3>
+<ul>
+    <li>1 != 0 ☞ True</li>
+    <li>1 != 1 ☞ False</li>
+    <li>0 != 1 ☞ True</li>
+    <li>0 != 0 ☞ False</li>
+</ul>
+<h3>== True?</h3>
+<ul>
+    <li>1 == 0 ☞ False</li>
+    <li>1 == 1 ☞ True</li>
+    <li>0 == 1 ☞ False</li>
+    <li>0 == 0 ☞ True</li>
+</ul>
+<p class="checkpoint">
+    Raise your hand and have Mr. Olinda verify this checkpoint.
+</p>
