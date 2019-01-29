@@ -14,11 +14,24 @@ header {
 }
 
 figure img {
-    width: 100%;
+    max-width: 100%;
 }
 
 code {
     border: 1px dashed #d33682;
+}
+
+pre {
+    max-width: 1000%;
+    margin: auto;
+    border: 3px dashed #d33682;
+    padding: 3px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+pre code {
+    border: none;
 }
 
 #homeButton {
