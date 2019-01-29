@@ -1,225 +1,124 @@
-# Logic
+Arduino IDE 
+============
 
-We will study basic logic in the form of sentence logic as well as
-memorize the truth tables you will use most frequently in programming.
-The exercises are taken with permission from the book *A Modern Formal
-Logic Primer* by Paul Teller.
+In this unit we will be programming Arduino Uno devices using the
+Arduino IDE. IDE stands for Integrated Development Environment. Although
+you can program these devices using other tools, we will use the
+official tool. Once you\'ve mastered it, you are welcome to use other
+tools that you might prefer.\
 
-## Checkpoint 1: Join the CSP 2018-19 Class on Quizlet
+Checkpoint 1: Download and Install the Arduino IDE
+--------------------------------------------------
 
-Go to Quizlet and log in. If you've never created a Quizlet account, do so now using your school email. Then join the CSP 2018-19 class so you have access to the logic truth tables that you will need to memorize.
+If you haven't already done so, install the Arduino IDE from the Windows Store.
+You can use the default options. Once you\'ve installed it, open it. You should
+see something like this:
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record
-        your screen as you complete each step from this checkpoint and submit the videos for credit.</p>
+![The Arduino IDE](images/javaw_2016-12-27_10-40-05.png)
 
-## Checkpoint 2: Logic as the Science of Argument 
-
-You will [read Chapter 1 of *A Modern Formal Logic Primer* by Paul
-Teller](aModernFormalLogicPrimer/1ch1.pdf)
-for Checkpoints 2-7. This is expected to take place in class, and at any
-point you can stop and get clarification from Mr. Olinda. Read pages 1-4
-of Chapter 1 before completing the exercise.
-
-> **Exercise 1-1:** Explain in your own words what an argument is. Give
-> an example of your own of an inductive argument and of a deductive
-> argument. Explain why your example of an inductive argument is an
-> inductive argument and why your example of a deductive argument is a
-> deductive argument.
-
-Your answer should be developed in writing and must be complete, simple,
-and concise. You will not move on to the next checkpoint unless your
-answer addresses each part of the exercise. Break the exercise down into smaller pieces and address each one. Write your answer as [a reply to this post](https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-2--Logic-as-the-Science-of-Argument.aspx).
+This is the basic skeleton for an Arduino program. As you can see, there
+are two sections. The first is for code you only want to run when the
+Arduino boots up. The second is for the code you want to run as long as
+the Arduino is powered on.\
 
 <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-## Checkpoint 3: Sentences and Connectives
+Checkpoint 2: Connect Your Arduino 
+----------------------------------
 
-Read pages 4-7 of Chapter 1 before completing the exercise.
+Unpack your Arduino Uno and your USB-A to USB-B cable.
+Once you have them, quit the Arduino IDE and connect the Arduino Uno to
+your computer using the cable. You should see a small green LED blink
+several times when you plug it in, and you\'ll see an orange LED as
+well.
 
-> **Exercise 1-2:** Transcribe the following sentences into sentence
-> logic, using `G` to transcribe `Pudding is good`. and `F` to
-> transcribe `Pudding is fattening`.
->
-> 1.  Pudding is good and pudding is fattening.
->
-> 2.  Pudding is both good and fattening.
->
-> 3.  Pudding is either good or not fattening.
->
-> 4.  Pudding is not good and not fattening.
->
-> You may well have a problem with the following transcriptions, because
-> to do some of them right you need to know something I haven't told
-> you yet. But please take a try before continuing. Trying for a few
-> minutes will help you to understand the discussion of the problem and
-> its solution in the next section. And perhaps you will figure out a
-> way of solving the problem yourself!
->
-> 5.  Pudding is not both good and fattening.
->
-> 6.  Pudding is both not good and not fattening.
->
-> 7.  Pudding is not either good or fattening.
->
-> 8.  Pudding is either not good or not fattening.
->
-> 9.  Pudding is neither good nor fattening.
+Open the Arduino IDE and go to the Tools menu. Hover your mouse over the
+Ports submenu and then choose the COM port that shows the Arduino Uno
+attached to it.\
 
 <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-## Checkpoint 4: Truth Tables and the Meaning of ~, &, and V
+Checkpoint 3: Edit Your Preferences 
+-----------------------------------
 
-Read pages 7-9 of Chapter 1 and then write a one paragraph summary of
-Section 1-3 that is complete, simple, and concise. Write your answer as [a reply to this post](https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-4--Truth-Tables-and-the-Meaning-of-~,-&,-and-V.aspx).
+Open Git Bash and navigate to your OneDrive folder. Then use `git init` to create a 
+repository called `cspProjects`. This is where your work for the second semester should 
+be stored. Create an `arduino` directory in that folder.
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+Go to the File menu and open the editor preferences (you can also get
+here by pressing Ctrl+Comma). First, change the default location of your
+sketchbook to your new `cspProjects/arduino` folder. Then enable code
+folding and line numbers.
 
-## Checkpoint 5: Truth Functions
+![The Arduino IDE preferences window](images/javaw_2016-12-27_11-06-13.png)
 
-Read pages 9-10 of Chapter 1 before completing the exercise.
-
-> **Exercise 1-3:** Try to explain what it would be for a declarative
-> compound sentence in English not to be truth functional. Give an
-> example of a declarative compound sentence in English that is not
-> truth functional. There are lots of them!
-
-Your answer should be developed in writing and must be complete, simple,
-and concise. You will not move on to the next checkpoint unless your
-answer addresses each part of the exercise. Write your answer as [a reply to this post](https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-5--Truth-Functions.aspx).
+Once you\'ve done this, press OK. Quit the Arduino IDE and reopen it.\
 
 <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-## Checkpoint 6: Compounding Compound Sentences
+Checkpoint 4: Bare Minimum 
+--------------------------
 
-Read pages 11-15 of Chapter 1 before completing the exercise.
+You should have the empty program on your screen. Go ahead and compile
+it by pressing the check symbol (or Ctrl+R) which will make sure your
+program is free of errors. This doesn\'t mean your program does anything, it
+just means that it doesn\'t have syntax errors. You should get a message
+similar to the following (I compiled and uploaded my program to a MEGA
+2560, not an Uno) when it finishes in the console at the bottom of the
+window:
 
-> **Exercise 1-4:** For each of the following sentences, state whether
-> its main connective is ~, &, or v and list each
-> sentence's components. Then do the same for the components you have
-> listed until you get down to atomic sentence letters. So you can see
-> how you should present your answers, I have done the first problem for
-> you.
->
->   -------------- --------------------- ----------------
->    **Sentence**   **Main Connective**   **Components**
->
->    ~(Av~B)        ~                     Av~B
->
->    Av~B           v                     A, ~B
->
->    ~B             ~                     B
->   -------------- --------------------- ----------------
->
-> 1.  (D&~G)v(G&D)
->
-> 2.  [(Dv~~B)&(DvB)]&(DvB)
->
-> 3.  L&{Mv[~N&(Mv~L)]}
->
-Work out the solutions on paper and only type in the final solution. For
-example, the solution for the sample problem would be ~B.
+```
+Sketch uses 656 bytes (0%) of program storage space. Maximum is 253952 bytes.
+Global variables use 9 bytes (0%) of dynamic memory, leaving 8183 bytes for local variables. Maximum is 8192 bytes.
+```
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+This just tells you how much of the Arduino\'s storage your program uses
+as well as how much memory it will use. Now, upload it to your Arduino.
+The Arduino won\'t do anything since it\'s an empty program, but you
+should get a simple message in the console telling you what happened:
 
-## Checkpoint 7: Rules of Formation and Rules of Valuation
+```
+Sketch uses 656 bytes (0%) of program storage space. Maximum is 253952 bytes.
+Global variables use 9 bytes (0%) of dynamic memory, leaving 8183 bytes for local variables. Maximum is 8192 bytes.
+```
 
-Read pages 16-18 of Chapter 1 before completing the exercises.
+It\'s basically the same. However, if you have any errors, those will
+also appear here. Go back to your settings and check the boxes for
+compilation and upload after the phrase: \"Show verbose output during:\"
+and repeat this checkpoint to see more detail about what\'s going on in
+the background.\
 
-> **Exercise 1-5:** Which of the following expressions are sentences of
-> sentence logic and which are not?
->
-> 1.  A&~B
-> 2.  A~&B
-> 3.  Gv(~B&~H)
-> 4.  A&(C&~(DvH))
-> 5.  (A&B)v(C&D)
-> 6.  (AvB)&CvD
-
-Your answer should be developed in writing and must be complete, simple,
-and concise. You will not move on to the next checkpoint unless your
-answer addresses each part of the exercise. Write your answer as [a reply to this post](https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-7--Rules-of-Formation-and-Rules-of-Valuation.aspx).
-
-> **Exercise 1-6:** Construct a complete truth table for each of the
-> following sentences. The first one is done for you:
->
->   ------ ------ -------- ----------
->    **A\   **B\   **\~B\   **\~BvA\
->     **     **      **        **
->
->     t\     t\      f\        t\
->
->     t\     f\      t\        t\
->
->     f\     t\      f\        f\
->
->     f\     f\      t\        t\
->   ------ ------ -------- ----------
->
-> 1.  ~BvA
-> 2.  ~(BvA)
-> 3.  (QvT)&(~Qv~T)
-> 4.  (D&~G)v(G&D)
-> 5.  Av(~BvC)
-> 6.  Kv[~P&(~PvM)]
-> 7.  [(Dv~~B)&(Dv~B)]&(DvB)
-> 8.  L&{Mv[~N&(~Mv~L)]}
-
-Complete the truth tables on a separate piece of paper.
+Finally, save your program as \"bareMinimum\" in your Arduino project
+folder. Then `git add` and `git commit`. Make sure your commit message
+follows the Seven Rules.\
 
 <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-## Checkpoint 8: Truth Tables 
+Checkpoint 5: Git Remote 
+------------------------
 
-At this point you have been studying the truth tables for several days.
-In order to pass this checkpoint you must be able to accurately answer
-at least 70% of these when quizzed verbally. Then you will take the
-written quiz.
+Now you need to link your local Git repository to a remote repository on
+GitHub. Go to GitHub and create a new repository called \"cspProjects\".
+Make sure your capitalization matches mine.\
 
-**NOT True?**
+![Creating a new remote repository for your Arduino sketchbook](images/chrome_2016-12-27_11-14-18.png)
 
-not False ☞ True
-not True ☞ False
+Then add this new remote repository to your local repository so that you
+can save your work to GitHub. Copy the link from the Clone or download button. Then, type the following command,
+replacing "link" with the link to your repo:\
 
-**OR True?**
+`git remote add origin link`
 
-True or False ☞ True
-True or True ☞ True
-False or True ☞ True
-False or False ☞ False
+Then type:\
 
-**AND True?**
+`git push -u origin master`
 
-True and False ☞ False
-True and True ☞ True
-False and True ☞ False
-False and False ☞ False
-
-**NOT OR True?**
-
-not (True or False) ☞ False
-not (True or True) ☞ False
-not (False or True) ☞ False
-not (False or False) ☞ True
-
-**NOT AND True?**
-
-not (True and False) ☞ True
-not (True and True) ☞ False
-not (False and True) ☞ True
-not (False and False) ☞ True
-
-**!= True?**
-
-1 != 0 ☞ True
-1 != 1 ☞ False
-0 != 1 ☞ True
-0 != 0 ☞ False
-
-**== True?**
-
-1 == 0 ☞ False
-1 == 1 ☞ True
-0 == 1 ☞ False
-0 == 0 ☞ True
+You should get a confirmation message, but if you get an error, be sure
+to read the instructions in the error message. You must understand that
+Git repositories can exist locally and remotely, and can be both at the
+same time. Almost all repositories in this class will be both local and
+remote since it allows you to have a backup of your work, but you can
+create a local repository which exists only on your computer if you
+want.\
 
 <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>

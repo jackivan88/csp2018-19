@@ -1,293 +1,62 @@
-<h1 id="logic">Logic</h1>
-<p>We will study basic logic in the form of sentence logic as well as memorize the truth tables you will use most
-    frequently in programming. The exercises are taken with permission from the book <em>A Modern Formal Logic Primer</em>
-    by Paul Teller.</p>
-<h2 id="checkpoint-1-join-the-csp-2018-19-class-on-quizlet">Checkpoint 1: Join the CSP 2018-19 Class on Quizlet</h2>
-<p>Go to Quizlet and log in. If you’ve never created a Quizlet account, do so now using your school email. Then join
-    the CSP 2018-19 class so you have access to the logic truth tables that you will need to memorize.</p>
-<p class="checkpoint">
-    Raise your hand and have Mr. Olinda verify this checkpoint. Alternatively, you may record your screen as you
-    complete each step from this checkpoint and submit the videos for credit.
+<h1 id="arduino-ide">Arduino IDE</h1>
+<p>In this unit we will be programming Arduino Uno devices using the Arduino IDE. IDE stands for Integrated Development Environment. Although you can program these devices using other tools, we will use the official tool. Once you've mastered it, you are welcome to use other tools that you might prefer.<br />
 </p>
-<h2 id="checkpoint-2-logic-as-the-science-of-argument">Checkpoint 2: Logic as the Science of Argument</h2>
-<p>You will <a href="aModernFormalLogicPrimer/1ch1.pdf">read Chapter 1 of <em>A Modern Formal Logic Primer</em> by Paul
-        Teller</a> for Checkpoints 2-7. This is expected to take place in class, and at any point you can stop and get
-    clarification from Mr. Olinda. Read pages 1-4 of Chapter 1 before completing the exercise.</p>
-<blockquote>
-    <p><strong>Exercise 1-1:</strong> Explain in your own words what an argument is. Give an example of your own of an
-        inductive argument and of a deductive argument. Explain why your example of an inductive argument is an
-        inductive argument and why your example of a deductive argument is a deductive argument.</p>
-</blockquote>
-<p>Your answer should be developed in writing and must be complete, simple, and concise. You will not move on to the
-    next checkpoint unless your answer addresses each part of the exercise. Break the exercise down into smaller pieces
-    and address each one. Write your answer as <a href="https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-2--Logic-as-the-Science-of-Argument.aspx">a
-        reply to this post</a>.</p>
-<p class="checkpoint">
-    Raise your hand and have Mr. Olinda verify this checkpoint.
+<h2 id="checkpoint-1-download-and-install-the-arduino-ide">Checkpoint 1: Download and Install the Arduino IDE</h2>
+<p>If you haven’t already done so, install the Arduino IDE from the Windows Store. You can use the default options. Once you've installed it, open it. You should see something like this:</p>
+<figure>
+<img src="images/javaw_2016-12-27_10-40-05.png" alt="The Arduino IDE" /><figcaption>The Arduino IDE</figcaption>
+</figure>
+<p>This is the basic skeleton for an Arduino program. As you can see, there are two sections. The first is for code you only want to run when the Arduino boots up. The second is for the code you want to run as long as the Arduino is powered on.<br />
 </p>
-<h2 id="checkpoint-3-sentences-and-connectives">Checkpoint 3: Sentences and Connectives</h2>
-<p>Read pages 4-7 of Chapter 1 before completing the exercise.</p>
-<blockquote>
-    <p><strong>Exercise 1-2:</strong> Transcribe the following sentences into sentence logic, using <code>G</code> to
-        transcribe <code>Pudding is good</code>. and <code>F</code> to transcribe <code>Pudding is fattening</code>.</p>
-    <ol type="1">
-        <li>
-            <p>Pudding is good and pudding is fattening.</p>
-        </li>
-        <li>
-            <p>Pudding is both good and fattening.</p>
-        </li>
-        <li>
-            <p>Pudding is either good or not fattening.</p>
-        </li>
-        <li>
-            <p>Pudding is not good and not fattening.</p>
-        </li>
-    </ol>
-    <p>You may well have a problem with the following transcriptions, because to do some of them right you need to know
-        something I haven’t told you yet. But please take a try before continuing. Trying for a few minutes will help
-        you to understand the discussion of the problem and its solution in the next section. And perhaps you will
-        figure out a way of solving the problem yourself!</p>
-    <ol start="5" type="1">
-        <li>
-            <p>Pudding is not both good and fattening.</p>
-        </li>
-        <li>
-            <p>Pudding is both not good and not fattening.</p>
-        </li>
-        <li>
-            <p>Pudding is not either good or fattening.</p>
-        </li>
-        <li>
-            <p>Pudding is either not good or not fattening.</p>
-        </li>
-        <li>
-            <p>Pudding is neither good nor fattening.</p>
-        </li>
-    </ol>
-</blockquote>
 <p class="checkpoint">
-    Raise your hand and have Mr. Olinda verify this checkpoint.
+Raise your hand and have Mr. Olinda verify this checkpoint.
 </p>
-<h2 id="checkpoint-4-truth-tables-and-the-meaning-of-and-v">Checkpoint 4: Truth Tables and the Meaning of ~, &amp;, and
-    V</h2>
-<p>Read pages 7-9 of Chapter 1 and then write a one paragraph summary of Section 1-3 that is complete, simple, and
-    concise. Write your answer as <a href="https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-4--Truth-Tables-and-the-Meaning-of-~,-&amp;,-and-V.aspx">a
-        reply to this post</a>.</p>
-<p class="checkpoint">
-    Raise your hand and have Mr. Olinda verify this checkpoint.
+<h2 id="checkpoint-2-connect-your-arduino">Checkpoint 2: Connect Your Arduino</h2>
+<p>Unpack your Arduino Uno and your USB-A to USB-B cable. Once you have them, quit the Arduino IDE and connect the Arduino Uno to your computer using the cable. You should see a small green LED blink several times when you plug it in, and you'll see an orange LED as well.</p>
+<p>Open the Arduino IDE and go to the Tools menu. Hover your mouse over the Ports submenu and then choose the COM port that shows the Arduino Uno attached to it.<br />
 </p>
-<h2 id="checkpoint-5-truth-functions">Checkpoint 5: Truth Functions</h2>
-<p>Read pages 9-10 of Chapter 1 before completing the exercise.</p>
-<blockquote>
-    <p><strong>Exercise 1-3:</strong> Try to explain what it would be for a declarative compound sentence in English
-        not to be truth functional. Give an example of a declarative compound sentence in English that is not truth
-        functional. There are lots of them!</p>
-</blockquote>
-<p>Your answer should be developed in writing and must be complete, simple, and concise. You will not move on to the
-    next checkpoint unless your answer addresses each part of the exercise. Write your answer as <a href="https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-5--Truth-Functions.aspx">a
-        reply to this post</a>.</p>
 <p class="checkpoint">
-    Raise your hand and have Mr. Olinda verify this checkpoint.
+Raise your hand and have Mr. Olinda verify this checkpoint.
 </p>
-<h2 id="checkpoint-6-compounding-compound-sentences">Checkpoint 6: Compounding Compound Sentences</h2>
-<p>Read pages 11-15 of Chapter 1 before completing the exercise.</p>
-<blockquote>
-    <p><strong>Exercise 1-4:</strong> For each of the following sentences, state whether its main connective is ~,
-        &amp;, or v and list each sentence’s components. Then do the same for the components you have listed until you
-        get down to atomic sentence letters. So you can see how you should present your answers, I have done the first
-        problem for you.</p>
-    <table style="width:75%;">
-        <colgroup>
-            <col style="width: 20%" />
-            <col style="width: 30%" />
-            <col style="width: 23%" />
-        </colgroup>
-        <tbody>
-            <tr class="odd">
-                <td style="text-align: center;"><strong>Sentence</strong></td>
-                <td style="text-align: center;"><strong>Main Connective</strong></td>
-                <td style="text-align: center;"><strong>Components</strong></td>
-            </tr>
-            <tr class="even">
-                <td style="text-align: center;"><sub>(Av</sub>B)</td>
-                <td style="text-align: center;">~</td>
-                <td style="text-align: center;">Av~B</td>
-            </tr>
-            <tr class="odd">
-                <td style="text-align: center;">Av~B</td>
-                <td style="text-align: center;">v</td>
-                <td style="text-align: center;">A, ~B</td>
-            </tr>
-            <tr class="even">
-                <td style="text-align: center;">~B</td>
-                <td style="text-align: center;">~</td>
-                <td style="text-align: center;">B</td>
-            </tr>
-        </tbody>
-    </table>
-    <ol type="1">
-        <li>
-            <p>(D&amp;~G)v(G&amp;D)</p>
-        </li>
-        <li>
-            <p>[(Dv~~B)&amp;(DvB)]&amp;(DvB)</p>
-        </li>
-        <li>
-            <p>L&amp;{Mv[<sub>N&amp;(Mv</sub>L)]}</p>
-        </li>
-    </ol>
-    <p>Work out the solutions on paper and only type in the final solution. For example, the solution for the sample
-        problem would be ~B.</p>
-</blockquote>
-<p class="checkpoint">
-    Raise your hand and have Mr. Olinda verify this checkpoint.
+<h2 id="checkpoint-3-edit-your-preferences">Checkpoint 3: Edit Your Preferences</h2>
+<p>Open Git Bash and navigate to your OneDrive folder. Then use <code>git init</code> to create a repository called <code>cspProjects</code>. This is where your work for the second semester should be stored. Create an <code>arduino</code> directory in that folder.</p>
+<p>Go to the File menu and open the editor preferences (you can also get here by pressing Ctrl+Comma). First, change the default location of your sketchbook to your new <code>cspProjects/arduino</code> folder. Then enable code folding and line numbers.</p>
+<figure>
+<img src="images/javaw_2016-12-27_11-06-13.png" alt="The Arduino IDE preferences window" /><figcaption>The Arduino IDE preferences window</figcaption>
+</figure>
+<p>Once you've done this, press OK. Quit the Arduino IDE and reopen it.<br />
 </p>
-<h2 id="checkpoint-7-rules-of-formation-and-rules-of-valuation">Checkpoint 7: Rules of Formation and Rules of Valuation</h2>
-<p>Read pages 16-18 of Chapter 1 before completing the exercises.</p>
-<blockquote>
-    <p><strong>Exercise 1-5:</strong> Which of the following expressions are sentences of sentence logic and which are
-        not?</p>
-    <ol type="1">
-        <li>A&amp;~B</li>
-        <li>A~&amp;B</li>
-        <li>Gv(<sub>B&amp;</sub>H)</li>
-        <li>A&amp;(C&amp;~(DvH))</li>
-        <li>(A&amp;B)v(C&amp;D)</li>
-        <li>(AvB)&amp;CvD</li>
-    </ol>
-</blockquote>
-<p>Your answer should be developed in writing and must be complete, simple, and concise. You will not move on to the
-    next checkpoint unless your answer addresses each part of the exercise. Write your answer as <a href="https://chapelfieldschools.sharepoint.com/sites/csp2018-19/SitePages/Checkpoint-7--Rules-of-Formation-and-Rules-of-Valuation.aspx">a
-        reply to this post</a>.</p>
-<blockquote>
-    <p><strong>Exercise 1-6:</strong> Construct a complete truth table for each of the following sentences. The first
-        one is done for you:</p>
-    <table style="width:47%;">
-        <colgroup>
-            <col style="width: 9%" />
-            <col style="width: 9%" />
-            <col style="width: 12%" />
-            <col style="width: 15%" />
-        </colgroup>
-        <tbody>
-            <tr class="odd">
-                <td style="text-align: center;"><strong>A<br />
-                    </strong></td>
-                <td style="text-align: center;"><strong>B<br />
-                    </strong></td>
-                <td style="text-align: center;"><strong>~B<br />
-                    </strong></td>
-                <td style="text-align: center;"><strong>~BvA<br />
-                    </strong></td>
-            </tr>
-            <tr class="even">
-                <td style="text-align: center;">t<br />
-                </td>
-                <td style="text-align: center;">t<br />
-                </td>
-                <td style="text-align: center;">f<br />
-                </td>
-                <td style="text-align: center;">t<br />
-                </td>
-            </tr>
-            <tr class="odd">
-                <td style="text-align: center;">t<br />
-                </td>
-                <td style="text-align: center;">f<br />
-                </td>
-                <td style="text-align: center;">t<br />
-                </td>
-                <td style="text-align: center;">t<br />
-                </td>
-            </tr>
-            <tr class="even">
-                <td style="text-align: center;">f<br />
-                </td>
-                <td style="text-align: center;">t<br />
-                </td>
-                <td style="text-align: center;">f<br />
-                </td>
-                <td style="text-align: center;">f<br />
-                </td>
-            </tr>
-            <tr class="odd">
-                <td style="text-align: center;">f<br />
-                </td>
-                <td style="text-align: center;">f<br />
-                </td>
-                <td style="text-align: center;">t<br />
-                </td>
-                <td style="text-align: center;">t<br />
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <ol type="1">
-        <li>~BvA</li>
-        <li>~(BvA)</li>
-        <li>(QvT)&amp;(<sub>Qv</sub>T)</li>
-        <li>(D&amp;~G)v(G&amp;D)</li>
-        <li>Av(~BvC)</li>
-        <li>Kv[<sub>P&amp;(</sub>PvM)]</li>
-        <li>[(Dv~<sub>B)&amp;(Dv</sub>B)]&amp;(DvB)</li>
-        <li>L&amp;{Mv[<sub>N&amp;(</sub>Mv~L)]}</li>
-    </ol>
-</blockquote>
-<p>Complete the truth tables on a separate piece of paper.</p>
 <p class="checkpoint">
-    Raise your hand and have Mr. Olinda verify this checkpoint.
+Raise your hand and have Mr. Olinda verify this checkpoint.
 </p>
-<h2 id="checkpoint-8-truth-tables">Checkpoint 8: Truth Tables</h2>
-<p>At this point you have been studying the truth tables for several days. In order to pass this checkpoint you must be
-    able to accurately answer at least 70% of these when quizzed verbally. Then you will take the graded quiz.</p>
-<h3>NOT True?</h3>
-<ul>
-    <li>not False ☞ True</li>
-    <li>not True ☞ False</li>
-</ul>
-<h3>OR True?</h3>
-<ul>
-    <li>True or False ☞ True</li>
-    <li>True or True ☞ True</li>
-    <li>False or True ☞ True</li>
-    <li>False or False ☞ False</li>
-</ul>
-<h3>AND True?</h3>
-<ul>
-    <li>True and False ☞ False</li>
-    <li>True and True ☞ True</li>
-    <li>False and True ☞ False</li>
-    <li>False and False ☞ False</li>
-</ul>
-<h3>NOT OR True?</h3>
-<ul>
-    <li>not (True or False) ☞ False</li>
-    <li>not (True or True) ☞ False</li>
-    <li>not (False or True) ☞ False</li>
-    <li>not (False or False) ☞ True</li>
-</ul>
-<h3>NOT AND True?</h3>
-<ul>
-    <li>not (True and False) ☞ True</li>
-    <li>not (True and True) ☞ False</li>
-    <li>not (False and True) ☞ True</li>
-    <li>not (False and False) ☞ True</li>
-</ul>
-<h3>!= True?</h3>
-<ul>
-    <li>1 != 0 ☞ True</li>
-    <li>1 != 1 ☞ False</li>
-    <li>0 != 1 ☞ True</li>
-    <li>0 != 0 ☞ False</li>
-</ul>
-<h3>== True?</h3>
-<ul>
-    <li>1 == 0 ☞ False</li>
-    <li>1 == 1 ☞ True</li>
-    <li>0 == 1 ☞ False</li>
-    <li>0 == 0 ☞ True</li>
-</ul>
+<h2 id="checkpoint-4-bare-minimum">Checkpoint 4: Bare Minimum</h2>
+<p>You should have the empty program on your screen. Go ahead and compile it by pressing the check symbol (or Ctrl+R) which will make sure your program is free of errors. This doesn't mean your program does anything, it just means that it doesn't have syntax errors. You should get a message similar to the following (I compiled and uploaded my program to a MEGA 2560, not an Uno) when it finishes in the console at the bottom of the window:</p>
+<pre><code>Sketch uses 656 bytes (0%) of program storage space. Maximum is 253952 bytes.
+Global variables use 9 bytes (0%) of dynamic memory, leaving 8183 bytes for local variables. Maximum is 8192 bytes.</code></pre>
+<p>This just tells you how much of the Arduino's storage your program uses as well as how much memory it will use. Now, upload it to your Arduino. The Arduino won't do anything since it's an empty program, but you should get a simple message in the console telling you what happened:</p>
+<pre><code>Sketch uses 656 bytes (0%) of program storage space. Maximum is 253952 bytes.
+Global variables use 9 bytes (0%) of dynamic memory, leaving 8183 bytes for local variables. Maximum is 8192 bytes.</code></pre>
+<p>It's basically the same. However, if you have any errors, those will also appear here. Go back to your settings and check the boxes for compilation and upload after the phrase: "Show verbose output during:" and repeat this checkpoint to see more detail about what's going on in the background.<br />
+</p>
+<p>Finally, save your program as "bareMinimum" in your Arduino project folder. Then <code>git add</code> and <code>git commit</code>. Make sure your commit message follows the Seven Rules.<br />
+</p>
 <p class="checkpoint">
-    Raise your hand and have Mr. Olinda verify this checkpoint.
+Raise your hand and have Mr. Olinda verify this checkpoint.
+</p>
+<h2 id="checkpoint-5-git-remote">Checkpoint 5: Git Remote</h2>
+<p>Now you need to link your local Git repository to a remote repository on GitHub. Go to GitHub and create a new repository called "cspProjects". Make sure your capitalization matches mine.<br />
+</p>
+<figure>
+<img src="images/chrome_2016-12-27_11-14-18.png" alt="Creating a new remote repository for your Arduino sketchbook" /><figcaption>Creating a new remote repository for your Arduino sketchbook</figcaption>
+</figure>
+<p>Then add this new remote repository to your local repository so that you can save your work to GitHub. Copy the link from the Clone or download button. Then, type the following command, replacing “link” with the link to your repo:<br />
+</p>
+<p><code>git remote add origin link</code></p>
+<p>Then type:<br />
+</p>
+<p><code>git push -u origin master</code></p>
+<p>You should get a confirmation message, but if you get an error, be sure to read the instructions in the error message. You must understand that Git repositories can exist locally and remotely, and can be both at the same time. Almost all repositories in this class will be both local and remote since it allows you to have a backup of your work, but you can create a local repository which exists only on your computer if you want.<br />
+</p>
+<p class="checkpoint">
+Raise your hand and have Mr. Olinda verify this checkpoint.
 </p>

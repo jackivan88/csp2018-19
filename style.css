@@ -13,6 +13,10 @@ header {
     text-align: center;
 }
 
+figure img {
+    width: 100%;
+}
+
 code {
     border: 1px dashed #d33682;
 }
@@ -58,10 +62,10 @@ input:invalid {
     border: 3px solid red;
   }
   
-  input:valid {
+input:valid {
     border: 3px solid green;
   }
   
-  form.quiz {
-      margin: 1em 0em;
+form.quiz {
+    margin: 1em 0em;
   }
