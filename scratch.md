@@ -1,124 +1,125 @@
-Arduino IDE 
-============
+Blink 
+======
 
-In this unit we will be programming Arduino Uno devices using the
-Arduino IDE. IDE stands for Integrated Development Environment. Although
-you can program these devices using other tools, we will use the
-official tool. Once you\'ve mastered it, you are welcome to use other
-tools that you might prefer.\
+One of the advantages of programming with the Arduino platform is that
+you can often see immediate results from your code. We\'re going to
+create a program that causes LEDs to blink, both on the board and on a
+separate breadboard.\
 
-Checkpoint 1: Download and Install the Arduino IDE
---------------------------------------------------
+Checkpoint 1: Connect Your Arduino 
+----------------------------------------------------------------
 
-If you haven't already done so, install the Arduino IDE from the Windows Store.
-You can use the default options. Once you\'ve installed it, open it. You should
-see something like this:
+Get an Arduino from the table at the back of the room and a USB-A to
+USB-B cable. Connect it to your laptop and open the Arduino IDE. If it
+does not automatically open an empty sketch (program) then go to the
+*File* menu and select *New*. Make sure you have the correct port
+selected.\
 
-![The Arduino IDE](images/javaw_2016-12-27_10-40-05.png)
+<p class='checkpoint'>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-This is the basic skeleton for an Arduino program. As you can see, there
-are two sections. The first is for code you only want to run when the
-Arduino boots up. The second is for the code you want to run as long as
-the Arduino is powered on.\
+Checkpoint 2: Output Pin 
+-----------------------------------------------------
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+For the program to work, you need to designate one pin as an output pin.
+The Arduino Uno has a built-in LED attached to pin 13, which is what we
+will use for now. On line three of your empty program, press <span class='keyboardShortcut'>Tab</span> and
+type:
 
-Checkpoint 2: Connect Your Arduino 
-----------------------------------
+`pinMode(13, OUTPUT);`
 
-Unpack your Arduino Uno and your USB-A to USB-B cable.
-Once you have them, quit the Arduino IDE and connect the Arduino Uno to
-your computer using the cable. You should see a small green LED blink
-several times when you plug it in, and you\'ll see an orange LED as
-well.
+This tells the board to set pin 13 to output. Go to the *Tools* menu
+and choose *Auto Format*. Then verify your code to make sure you
+haven\'t made any syntax errors. At this point your code won\'t do
+anything, so do not upload it yet. Just save it as *blink* in your
+*cspProjects/arduino* folder. Then add and commit it to version
+control.\
 
-Open the Arduino IDE and go to the Tools menu. Hover your mouse over the
-Ports submenu and then choose the COM port that shows the Arduino Uno
-attached to it.\
+![Set pin 13 to output](images/javaw_2017-01-08_18-45-49.png)
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+What other mode do you think you can set pins to?\
 
-Checkpoint 3: Edit Your Preferences 
------------------------------------
+<p class='checkpoint'>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-Open Git Bash and navigate to your OneDrive folder. Then use `git init` to create a 
-repository called `cspProjects`. This is where your work for the second semester should 
-be stored. Create an `arduino` directory in that folder.
+Checkpoint 3: High and Low 
+--------------------------------------------------------
 
-Go to the File menu and open the editor preferences (you can also get
-here by pressing Ctrl+Comma). First, change the default location of your
-sketchbook to your new `cspProjects/arduino` folder. Then enable code
-folding and line numbers.
+Now let\'s add the code that will run continuously as long as your
+Arduino is powered on. Go to line eight and press <span class='keyboardShortcut'>Tab</span>. Then type:
 
-![The Arduino IDE preferences window](images/javaw_2016-12-27_11-06-13.png)
+`digitalWrite(13, HIGH);`
 
-Once you\'ve done this, press OK. Quit the Arduino IDE and reopen it.\
+`delay(1000);`
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+`digitalWrite(13, LOW);`
 
-Checkpoint 4: Bare Minimum 
---------------------------
+`delay(1000);`
 
-You should have the empty program on your screen. Go ahead and compile
-it by pressing the check symbol (or Ctrl+R) which will make sure your
-program is free of errors. This doesn\'t mean your program does anything, it
-just means that it doesn\'t have syntax errors. You should get a message
-similar to the following (I compiled and uploaded my program to a MEGA
-2560, not an Uno) when it finishes in the console at the bottom of the
-window:
+Go to the *Tools* menu and choose *Auto Format*. Then verify your
+code to make sure you haven\'t made any syntax errors. Save it, and then
+add and commit it to version control. Then upload it and see if the
+orange LED blinks on and off. If so, you\'ve entered the code correctly.
+If not, go back and check each line.
 
-```
-Sketch uses 656 bytes (0%) of program storage space. Maximum is 253952 bytes.
-Global variables use 9 bytes (0%) of dynamic memory, leaving 8183 bytes for local variables. Maximum is 8192 bytes.
-```
+![Check to see if your LED blinks correctly.](images/javaw_2017-01-08_19-05-40.png)
 
-This just tells you how much of the Arduino\'s storage your program uses
-as well as how much memory it will use. Now, upload it to your Arduino.
-The Arduino won\'t do anything since it\'s an empty program, but you
-should get a simple message in the console telling you what happened:
+What part or parts of your code do you think turns on the light? What
+part or parts turns it off? What part or parts control the duration of
+the blink? What unit do you think is used to measure time?\
 
-```
-Sketch uses 656 bytes (0%) of program storage space. Maximum is 253952 bytes.
-Global variables use 9 bytes (0%) of dynamic memory, leaving 8183 bytes for local variables. Maximum is 8192 bytes.
-```
+<p class='checkpoint'>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-It\'s basically the same. However, if you have any errors, those will
-also appear here. Go back to your settings and check the boxes for
-compilation and upload after the phrase: \"Show verbose output during:\"
-and repeat this checkpoint to see more detail about what\'s going on in
-the background.\
+Checkpoint 4: Timing 
+-------------------------------------------------
 
-Finally, save your program as \"bareMinimum\" in your Arduino project
-folder. Then `git add` and `git commit`. Make sure your commit message
-follows the Seven Rules.\
+The way your program works right now, your LED is on for one second and
+off for one second. Modify it so that it is on for one second and off
+for two. The amount of time an LED is on during one cycle is called the
+duty cycle. So a duty cycle of 50% means that the light is on half the
+duration of a cycle. Try at least three other combinations of timings.
+Be prepared to demonstrate changing the timings for Mr. Olinda and
+express them both in seconds as well as duty cycles.\
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<p class='checkpoint'>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-Checkpoint 5: Git Remote 
-------------------------
+Checkpoint 5: Patterns 
+----------------------------------------------------
 
-Now you need to link your local Git repository to a remote repository on
-GitHub. Go to GitHub and create a new repository called \"cspProjects\".
-Make sure your capitalization matches mine.\
+Now that you know how to adjust the timing of the lights, add extra
+lines of code to turn the light on and off in different patterns. You
+must create a pattern that uses at least four ON/OFF pairs, and each
+pair must be different.\
 
-![Creating a new remote repository for your Arduino sketchbook](images/chrome_2016-12-27_11-14-18.png)
+<p class='checkpoint'>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-Then add this new remote repository to your local repository so that you
-can save your work to GitHub. Copy the link from the Clone or download button. Then, type the following command,
-replacing "link" with the link to your repo:\
+Checkpoint 6: Commenting Your Code
+---------------------------------------------------------------
 
-`git remote add origin link`
+Go ahead and add comments on each line of code, explaining what you
+think each line does. Comments are preceded by `//` so that the compiler
+knows they\'re not supposed to be code. You can add comments after code
+or on their own lines.\
 
-Then type:\
+<p class='checkpoint'>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
 
-`git push -u origin master`
+Checkpoint 7: External LED Setup
+-------------------------------------------------------------
 
-You should get a confirmation message, but if you get an error, be sure
-to read the instructions in the error message. You must understand that
-Git repositories can exist locally and remotely, and can be both at the
-same time. Almost all repositories in this class will be both local and
-remote since it allows you to have a backup of your work, but you can
-create a local repository which exists only on your computer if you
-want.\
+Now we are going to modify the program to turn an external LED on and
+off. Go to the supply bin and get a breadboard, two wires, a 1K resistor
+(black, red, and gold stripes), and a red LED. Breadboards are small,
+rectangular pieces of plastic with holes in them where you can quickly
+add and remove wires and other parts to try out different circuits. The
+wires will carry the current from the board to the LED, and the resistor
+simply protects the LED from overheating.\
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+Then, unplug and set up your Arduino to match the diagram below. Make
+sure you use exactly the same pins as the diagram. Notice that one of
+the pins on the LED is longer. That pin is bent in the diagram.\
+
+![External LED Setup](images/External%20LED_blink.gif)
+
+If you plug your Arduino back in, you\'ll notice it does not do anything
+new. Go ahead and edit your code to make the external LED blink. Once it
+does, save your code, and add and commit it to version control.\
+
+<p class='checkpoint'>Raise your hand and have Mr. Olinda verify this checkpoint.</p>
