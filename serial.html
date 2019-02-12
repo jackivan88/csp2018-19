@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Computer Science Principles: Serial</title>
+    <meta charset="utf-8">
+    <meta name="author" content="John Olinda">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instructions for the Serial lesson">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <a id="homeButton" href="index.html">Return to Home Page</a>
+    <header>
+        <h1 id="serial">Serial</h1>
+        <p class="subtitle">Chapel Field Christian Schools</p>
+    </header>
+    <p><a href="https://www.arduino.cc/en/Reference/Serial">Your Arduino has a serial connection</a> for communicating with your computer or with other devices. Usually you'll use the built-in serial port in the USB port, but you can also connect to pins 0 and 1 to communicate over serial. Be careful when doing this since using the wrong voltages can damage your Arduino. During this lesson I link to several more detailed explanations of certain functions. If you're confused about what they do, try reading those before you ask a question.</p>
+    <h2 id="checkpoint-1-connect-your-arduino">Checkpoint 1: Connect Your Arduino</h2>
+    <p>Get your supplies and take out only the Arduino and the USB cable. Connect your Arduino to your laptop, open the Arduino IDE, and make sure the correct port is selected.</p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <h2 id="checkpoint-2-blink-but-better">Checkpoint 2: Blink, But Better</h2>
+    <p>Create a new Arduino program from the file menu and write the code to make pin 13 blink on and off with a 1 second delay. Upload the program to make sure it works and then save the program as <em>serialBlink</em> in your <em>~/projects/arduino/</em> directory. Then add and commit it to version control using a proper commit message.</p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <h2 id="checkpoint-3-a-little-serial">Checkpoint 3: A Little Serial</h2>
+    <p>Now you need to add the following statement to the <code>void setup()</code> function:</p>
+    <pre><code>Serial.begin(9600);</code></pre>
+    <p><img src="images/javaw_2017-01-10_11-30-58.png" /></p>
+    <p>This activates the serial connection in your USB port and sets the baud rate to 9,600. <a href="http://electronicdesign.com/communications/what-s-difference-between-bit-rate-and-baud-rate#4">This link provides a more detailed explanation of baud rates</a>, but it basically means the number of signals that can be sent per second.</p>
+    <p>Add the following code to the <code>void loop()</code> function right after the code that turns the LED on:</p>
+    <pre><code>Serial.println(&quot;On&quot;);</code></pre>
+    <p>Then add the following code to the <code>void loop()</code> function right after the code that turns the LED off:</p>
+    <pre><code>Serial.println(&quot;Off&quot;);</code></pre>
+    <p><img src="images/javaw_2017-01-10_11-42-46.png" /></p>
+    <p>Upload the program to your Arduino and press the magnifying glass icon in the upper right corner to open your serial monitor. You should start to see a series of messages appear.</p>
+    <p><img src="images/2017-01-10_11-43-55.gif" /></p>
+    <p>If you do, then save your program, add, and commit. If not, go back and review the instructions to make sure you've done the steps correctly.</p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <h2 id="checkpoint-4-make-friends">Checkpoint 4: Make Friends</h2>
+    <p>Use the <a href="https://www.arduino.cc/en/Serial/Println"><code>Serial.println()</code></a> functions to make your Arduino say something nice to the user when it first boots up. If it works, then save, add, and commit.</p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <h2 id="checkpoint-5-lines">Checkpoint 5: Lines</h2>
+    <p>Change all the <code>Serial.println()</code> functions to <a href="https://www.arduino.cc/en/Serial/Print"><code>Serial.print()</code></a> functions and see what happens in the serial monitor when you upload your program. What is the difference between println and print?</p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <h2 id="checkpoint-6-youre-in-charge">Checkpoint 6: You're in Charge</h2>
+    <p>Go ahead and change the <code>Serial.print()</code> functions back to <code>Serial.println()</code>. Now you're going to modify your program to turn the light on and off in response to commands you send via the serial monitor. First, add the following code underneath your friendly message:</p>
+    <pre><code>Serial.println(&quot;Send &#39;On&#39; to turn on the LED.&quot;);
+Serial.println(&quot;Send &#39;Off&#39; to turn off the LED.&quot;);</code></pre>
+    <p><img src="images/javaw_2017-01-10_12-19-23.png" /></p>
+    <p>Don't change anything else yet. Open your serial monitor and upload the program. As soon as the program uploads you should see something like this:</p>
+    <p><img src="images/javaw_2017-01-10_12-20-47.png" /></p>
+    <p>If you see this, go ahead and save, add, and commit.</p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <h2 id="checkpoint-7-if-else">Checkpoint 7: if / else</h2>
+    <p>Now you're going to create an <a href="https://www.arduino.cc/en/Reference/Else"><code>if / else</code></a> block in your <code>void loop()</code> function that will control the lights. An <code>if / else</code> block tells the Arduino to do one of the things in the block if certain conditions are met. If they're not met, the Arduino will simply loop around and try again. Add the following lines to your code:</p>
+    <pre><code>if (Serial.readString() == &quot;On&quot;) {
+  digitalWrite(13, HIGH);
+}
+else if (Serial.readString() == &quot;Off&quot;) {
+  digitalWrite(13, LOW);
+}</code></pre>
+    <p><img src="images/javaw_2017-01-10_12-27-14.png" /></p>
+    <p>The <a href="https://www.arduino.cc/en/Serial/ReadString"><code>Serial.readString()</code></a> function waits for you to send something from the computer to the Arduino via the serial connection and then reads it as if it is a group of text characters. If you were sending only integers or floating point values, you would use a different function. Open your serial monitor and then upload the code. You should now be able to type "On" or "Off" into the serial monitor to turn the light on and off. If it works, go ahead and save, add, and commit your code. However, you'll notice that it doesn't always respond. This is because we're directly reading the serial buffer, which is emptied every second. Sometimes it is emptied before the program has a chance to read it. We're going to fix this later.</p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <h2 id="checkpoint-8-feedback">Checkpoint 8: Feedback</h2>
+    <p>Now that your light turns on and off, let's add some feedback for the user other than the light. Even though the light provides feedback, it's possible that the light could be defective. Having another way of knowing whether your code is working helps you to find problems with your software and hardware. I want you to add <code>Serial.println()</code> functions in your <code>if / else</code> block to tell you what the Arduino is doing in response to your commands.</p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <h2 id="checkpoint-9-nested-blocks">Checkpoint 9: Nested Blocks</h2>
+    <p>Up until now, the Arduino has been unreliable in its response to our commands. We're going to fix that. At the beginning of your <code>void loop()</code> function, add the following:</p>
+    <pre><code>if (Serial.available() \&gt; 0) {\
+  String command;\
+  command = Serial.readString();\
+
+}</code></pre>
+    <p>You'll notice that there is a blank line. In this blank line, cut and paste your <code>if / else block</code> and run <strong>Auto Format</strong>. Now you have <code>if</code> statements nested inside another if statement. The <a href="https://www.arduino.cc/en/Serial/Available"><code>Serial.available()</code></a> function checks to see if there is anything in the serial buffer. Once there is, it creates a string variable called command and then stores whatever is in the serial buffer as command.</p>
+    <p><img src="images/javaw_2017-01-10_15-05-36.png" /></p>
+    <p>Now, find the functions that turn the light on and off and change them so that they are triggered based on the command variable, not directly by the serial buffer.</p>
+    <p>Then add this command underneath your <code>Serial.begin()</code> function in your <code>void setup()</code> function:</p>
+    <pre><code>Serial.setTimeout(10);</code></pre>
+    <p>This will make your Arduino scan the serial buffer every ten milliseconds instead of once a second. Now test it and see if it does what you tell it to reliably. If it works, save, add, and commit your code.</p>
+    <p><em>If you want an extra challenge, see if you can get rid of the nested block. In other words, see if you can change the code so that you don't have an <code>if</code> inside another <code>if</code>. Also, see if you can add an else that responds to the user if they type anything except "On" or "Off" to help them figure out what to do.</em></p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <h2 id="checkpoint-10-comment-your-code">Checkpoint 10: Comment Your Code</h2>
+    <p>Go back and add comments to each line of code explaining what it does. Then save, add, commit, and push your code.</p>
+    <p class="checkpoint">
+        Raise your hand and have Mr. Olinda verify this checkpoint.
+    </p>
+    <footer>
+        <hr>
+        <p class="turnin">Turn in your checkpoint sheet to the teacher's desk once it is completely signed and has your name and section. You may now work on stretch projects.</p>
+        <a id="homeButton" href="index.html">Return to Home Page</a>
+    </footer>
+</body>
+
+</html>
