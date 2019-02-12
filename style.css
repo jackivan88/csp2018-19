@@ -17,8 +17,13 @@ figure img {
     max-width: 100%;
 }
 
+img {
+    max-width: 100%;
+}
+
 code {
     border: 1px dashed #d33682;
+    padding: 3px;
 }
 
 pre {

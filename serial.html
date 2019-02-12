@@ -23,7 +23,7 @@
         Raise your hand and have Mr. Olinda verify this checkpoint.
     </p>
     <h2 id="checkpoint-2-blink-but-better">Checkpoint 2: Blink, But Better</h2>
-    <p>Create a new Arduino program from the file menu and write the code to make pin 13 blink on and off with a 1 second delay. Upload the program to make sure it works and then save the program as <em>serialBlink</em> in your <em>~/projects/arduino/</em> directory. Then add and commit it to version control using a proper commit message.</p>
+    <p>Create a new Arduino program from the file menu and write the code to make pin 13 blink on and off with a 1 second delay. Upload the program to make sure it works and then save the program as <em>serialBlink</em> in your <em>~/../cspProjects/arduino/</em> directory. Then add and commit it to version control using a proper commit message.</p>
     <p class="checkpoint">
         Raise your hand and have Mr. Olinda verify this checkpoint.
     </p>
@@ -84,9 +84,9 @@ else if (Serial.readString() == &quot;Off&quot;) {
     </p>
     <h2 id="checkpoint-9-nested-blocks">Checkpoint 9: Nested Blocks</h2>
     <p>Up until now, the Arduino has been unreliable in its response to our commands. We're going to fix that. At the beginning of your <code>void loop()</code> function, add the following:</p>
-    <pre><code>if (Serial.available() \&gt; 0) {\
-  String command;\
-  command = Serial.readString();\
+    <pre><code>if (Serial.available() &gt; 0) {
+  String command;
+  command = Serial.readString();
 
 }</code></pre>
     <p>You'll notice that there is a blank line. In this blank line, cut and paste your <code>if / else block</code> and run <strong>Auto Format</strong>. Now you have <code>if</code> statements nested inside another if statement. The <a href="https://www.arduino.cc/en/Serial/Available"><code>Serial.available()</code></a> function checks to see if there is anything in the serial buffer. Once there is, it creates a string variable called command and then stores whatever is in the serial buffer as command.</p>
