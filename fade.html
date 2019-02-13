@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Computer Science Principles: Fade</title>
+    <meta charset="utf-8">
+    <meta name="author" content="John Olinda">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instructions for the Fade lesson">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <a id="homeButton" href="index.html">Return to Home Page</a>
+    <header>
+        <h1 id="serial">Fade</h1>
+        <p class="subtitle">Chapel Field Christian Schools</p>
+    </header>
+    <p>We're going to learn how to make an LED gradually fade on and off. We'll actually use two different methods. It's important for you to realize that there is almost always more than one way to solve a problem in computer science. Usually one of them is optimal, but not always.</p>
+    <h2 id="checkpoint-1-connect-your-arduino">Checkpoint 1: Connect Your Arduino</h2>
+    <p>Get your supplies and take out only the Arduino and the USB cable. Connect your Arduino to your laptop, open the Arduino IDE, and make sure the correct port is selected.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-2-first-fade">Checkpoint 2: First Fade</h2>
+    <p>The first program uses the <a href="https://www.arduino.cc/en/Reference/For"><code>for</code> statement</a>. This type of statement is usually used to run the code inside repeatedly until the test condition is no longer true. Open a new sketch and delete the comments. Then add code to activate the serial connection when the Arduino turns on and set pin 9 to output. Then save the program as <em>forFade</em>. Add and commit your code to version control.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-3-for">Checkpoint 3: for</h2>
+    <p>Then add two <code>for</code> statements inside the <code>void loop()</code> section. A <code>for</code> statement consists of:</p>
+    <pre><code>for (initialize; test; increment/decrement) {
+   
+}</code></pre>
+    <p>The initialization happens once, the test happens each time through the loop, and the <a href="https://www.arduino.cc/en/Reference/Increment">increment or decrement</a> is executed if the test is true. The loop stops as soon as the test is false. The first <code>for</code> statement will gradually increase the brightness of the LED to the maximum value of 255, and the second will decrease the brightness of the LED to the minimum value of 0.</p>
+    <p>The initialization of the first <code>for</code> statement is:</p>
+    <pre><code>int lightValue = 0</code></pre>
+    <p>The test for the first <code>for</code> statement is:</p>
+    <pre><code>lightValue &lt;= 255</code></pre>
+    <p>The loop increments the value of <code>lightValue</code> once each time:</p>
+    <pre><code>lightValue++</code></pre>
+    <p>Replace the placeholders with the code above. Once these are inserted, you're ready to add code inside the for statement that will run each time. First, you need to send the <code>lightValue</code> to pin 9, but instead of using <a href="https://www.arduino.cc/en/Reference/DigitalWrite"><code>digitalWrite</code></a>, you will use <a href="https://www.arduino.cc/en/Reference/AnalogWrite"><code>analogWrite</code></a>. The first is binary: either on or off. The second has a range of values from 0 to 255. It looks like:</p>
+    <pre><code>analogWrite(pin, value)</code></pre>
+    <p>Only some of the pins support analog output. Use <code>analogWrite</code> to send <code>lightValue</code> to pin 9. Then add code to output <code>lightValue</code> to the serial monitor as well. Then add a ten millisecond delay at the end of the loop.</p>
+    <p>Look at your board and identify the symbol that tells you which ones support analog.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-4-and-back-down">Checkpoint 4: And Back Down</h2>
+    <p>The contents of the second <code>for</code> statement are identical, but the initialization, test, and <a href="https://www.arduino.cc/en/Reference/Increment"><code>increment/decrement</code></a> are different. Figure out how to reduce the brightness from a starting value of 255 down to 0.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-5-testing">Checkpoint 5: Testing</h2>
+    <p>Set up your Arduino so that it is connected to the red external LED with a 1K resistor between the Arduino and the LED. Make sure your LED is wired into the right pin. Then upload your code and test it. You should see the light gradually increase and decrease in brightness. Confirm this with the serial monitor. If you're successful, then format, save, add, and commit your code.</p>
+    <p><img src="images/External_A9_Fade.gif" /></p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-6-second-fade">Checkpoint 6: Second Fade</h2>
+    <p>Open a new sketch and delete the comments. This time we're going to use the <code>if</code> statement and we will need only one loop instead of two. First, set two variables at the very beginning of the program, before the <code>void setup()</code> function:</p>
+    <pre><code>int lightValue = 0;
+int delta = 1;</code></pre>
+    <p>We are setting the initial value of <code>lightValue</code> to 0 and the value of <code>delta</code> (which means change) to 1. Then, add code to set pin 9 to output and activate the serial connection. Save the program as <em>ifFade</em> and then add and commit it to version control.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-7-add-flip">Checkpoint 7: Add, Flip</h2>
+    <p>Now, in the <code>void loop()</code> section, add:</p>
+    <pre><code>lightValue = lightValue + delta;
+if (lightValue &lt;= 0 || lightValue &gt;= 255) {
+  delta = -delta;
+}</code></pre>
+    <p>Explain what you think this code does.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-8-finish-and-test">Checkpoint 8: Finish and Test</h2>
+    <p>Add code to the <code>void loop()</code> section to output <code>lightValue</code> to both the LED and the serial monitor, and add a ten millisecond delay. Then upload the code to your Arduino. If it works, then format, save, add, and commit it.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-9-comment-your-code">Checkpoint 9: Comment Your Code</h2>
+    <p>Go back and add comments to each line of code from both programs explaining what each does. Then save, add, commit, and push your code.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+
+    <footer>
+        <hr>
+        <p class="turnin">Turn in your checkpoint sheet to the teacher's desk once it is completely signed and has your name and section. You may now work on stretch projects.</p>
+        <a id="homeButton" href="index.html">Return to Home Page</a>
+    </footer>
+</body>
+
+</html>

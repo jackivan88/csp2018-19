@@ -1,224 +1,168 @@
-Serial 
-=======
+Fade 
+=====
 
-[Your Arduino has a serial
-connection](https://www.arduino.cc/en/Reference/Serial) for
-communicating with your computer or with other devices. Usually you\'ll
-use the built-in serial port in the USB port, but you can also connect
-to pins 0 and 1 to communicate over serial. Be careful when doing this
-since using the wrong voltages can damage your Arduino. During this
-lesson I link to several more detailed explanations of certain
-functions. If you\'re confused about what they do, try reading those
-before you ask a question.\
+We\'re going to learn how to make an LED gradually fade on and off.
+We\'ll actually use two different methods. It\'s important for you to
+realize that there is almost always more than one way to solve a problem
+in computer science. Usually one of them is optimal, but not always.
 
 Checkpoint 1: Connect Your Arduino 
-----------------------------------
+----------------------------------------------------------------
 
 Get your supplies and take out only the Arduino and the USB cable.
 Connect your Arduino to your laptop, open the Arduino IDE, and make sure
-the correct port is selected.\
+the correct port is selected.
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
-Checkpoint 2: Blink, But Better 
--------------------------------
+Checkpoint 2: First Fade 
+-----------------------------------------------------
 
-Create a new Arduino program from the file menu and write the code to
-make pin 13 blink on and off with a 1 second delay. Upload the program
-to make sure it works and then save the program as *serialBlink* in your
-*\~/projects/arduino/* directory. Then add and commit it to version
-control using a proper commit message.\
+The first program uses the [`for` statement](https://www.arduino.cc/en/Reference/For). This type of
+statement is usually used to run the code inside repeatedly until the
+test condition is no longer true. Open a new sketch and delete the
+comments. Then add code to activate the serial connection when the
+Arduino turns on and set pin 9 to output. Then save the program as
+*forFade*. Add and commit your code to version control.
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
-Checkpoint 3: A Little Serial 
------------------------------
+Checkpoint 3: for 
+-----------------------------------------------
 
-Now you need to add the following statement to the `void setup()` function:
-
-```
-Serial.begin(9600);
-```
-
-![](images/javaw_2017-01-10_11-30-58.png)
-
-This activates the serial connection in your USB port and sets the baud
-rate to 9,600. [This link provides a more detailed explanation of baud rates](http://electronicdesign.com/communications/what-s-difference-between-bit-rate-and-baud-rate#4),
-but it basically means the number of signals that can be sent per
-second.\
-
-Add the following code to the `void loop()` function right after the code
-that turns the LED on:
+Then add two `for` statements inside the `void loop()` section. A
+`for` statement consists of:
 
 ```
-Serial.println(\"On\");
-```
-
-Then add the following code to the `void loop()` function right after the
-code that turns the LED off:
-
-```
-Serial.println(\"Off\");\
-```
-
-![](images/javaw_2017-01-10_11-42-46.png)
-
-Upload the program to your Arduino and press the magnifying glass icon
-in the upper right corner to open your serial monitor. You should start
-to see a series of messages appear.
-
-![](images/2017-01-10_11-43-55.gif)
-
-If you do, then save your program, add, and commit. If not, go back and
-review the instructions to make sure you\'ve done the steps correctly.\
-
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-
-Checkpoint 4: Make Friends 
--------------------------------------------------------
-
-Use the [Serial.println()](https://www.arduino.cc/en/Serial/Println)
-functions to make your Arduino say something nice to the user when it
-first boots up. If it works, then save, add, and commit.\
-
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-
-Checkpoint 5: Lines 
--------------------------------------------------
-
-Change all the `Serial.println()` functions to
-[Serial.print()](https://www.arduino.cc/en/Serial/Print) functions and
-see what happens in the serial monitor when you upload your program.
-What is the difference between println and print?\
-
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-
-Checkpoint 6: You\'re in Charge 
--------------------------------------------------------------
-
-Go ahead and change the `Serial.print()` functions back to
-`Serial.println()`. Now you\'re going to modify your program to turn the
-light on and off in response to commands you send via the serial
-monitor. First, add the following code underneath your friendly message:
-
-```
-Serial.println("Send 'On' to turn on the LED.");
-Serial.println("Send 'Off' to turn off the LED.");
-```
-
-![](images/javaw_2017-01-10_12-19-23.png)
-
-Don\'t change anything else yet. Open your serial monitor and upload the
-program. As soon as the program uploads you should see something like
-this:
-
-![](images/javaw_2017-01-10_12-20-47.png)
-
-If you see this, go ahead and save, add, and commit.\
-
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-
-Checkpoint 7: if / else 
------------------------
-
-Now you\'re going to create an [`if / else`](https://www.arduino.cc/en/Reference/Else) block in your
-`void loop()` function that will control the lights. An `if / else` block
-tells the Arduino to do one of the things in the block if certain
-conditions are met. If they\'re not met, the Arduino will simply loop
-around and try again. Add the following lines to your code:
-
-```
-if (Serial.readString() == "On") {
-  digitalWrite(13, HIGH);
-}
-else if (Serial.readString() == "Off") {
-  digitalWrite(13, LOW);
+for (initialize; test; increment/decrement) {
+   
 }
 ```
 
-![](images/javaw_2017-01-10_12-27-14.png)
+The initialization happens once, the test happens each time through the
+loop, and the [increment or decrement](https://www.arduino.cc/en/Reference/Increment) is executed if
+the test is true. The loop stops as soon as the test is false. The first
+`for` statement will gradually increase the brightness of the LED to
+the maximum value of 255, and the second will decrease the brightness of
+the LED to the minimum value of 0.
 
-The [`Serial.readString()`](https://www.arduino.cc/en/Serial/ReadString)
-function waits for you to send something from the computer to the
-Arduino via the serial connection and then reads it as if it is a group
-of text characters. If you were sending only integers or floating point
-values, you would use a different function. Open your serial monitor and
-then upload the code. You should now be able to type \"On\" or \"Off\"
-into the serial monitor to turn the light on and off. If it works, go
-ahead and save, add, and commit your code. However, you\'ll notice that
-it doesn\'t always respond. This is because we\'re directly reading the
-serial buffer, which is emptied every second. Sometimes it is emptied
-before the program has a chance to read it. We\'re going to fix this
-later.\
+The initialization of the first `for` statement is:
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+```
+int lightValue = 0
+```
 
-Checkpoint 8: Feedback 
-----------------------
+The test for the first `for` statement is:
 
-Now that your light turns on and off, let\'s add some feedback for the
-user other than the light. Even though the light provides feedback,
-it\'s possible that the light could be defective. Having another way of
-knowing whether your code is working helps you to find problems with
-your software and hardware. I want you to add Serial.println() functions
-in your if / else block to tell you what the Arduino is doing in
-response to your commands.\
+```
+lightValue <= 255
+```
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+The loop increments the value of `lightValue` once each time:
 
-Checkpoint 9: Nested Blocks 
+```
+lightValue++
+```
+
+Replace the placeholders with the code above. Once these are inserted,
+you\'re ready to add code inside the for statement that will run each
+time. First, you need to send the `lightValue` to pin 9, but instead
+of using
+[`digitalWrite`](https://www.arduino.cc/en/Reference/DigitalWrite),
+you will use
+[`analogWrite`](https://www.arduino.cc/en/Reference/AnalogWrite). The
+first is binary: either on or off. The second has a range of values from
+0 to 255. It looks like:
+
+```
+analogWrite(pin, value)
+```
+
+Only some of the pins support analog output. Use `analogWrite` to send
+`lightValue` to pin 9. Then add code to output `lightValue` to the
+serial monitor as well. Then add a ten millisecond delay at the end of
+the loop.
+
+Look at your board and identify the symbol that tells you which ones
+support analog.
+
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+
+Checkpoint 4: And Back Down 
 ---------------------------------------------------------
 
-Up until now, the Arduino has been unreliable in its response to our
-commands. We\'re going to fix that. At the beginning of your
-`void loop()` function, add the following:
+The contents of the second `for` statement are identical, but the
+initialization, test, and
+[`increment/decrement`](https://www.arduino.cc/en/Reference/Increment) are
+different. Figure out how to reduce the brightness from a starting value
+of 255 down to 0.
+
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+
+Checkpoint 5: Testing 
+--------------------------------------------------
+
+Set up your Arduino so that it is connected to the red external LED with
+a 1K resistor between the Arduino and the LED. Make sure your LED is
+wired into the right pin. Then upload your code and test it. You should
+see the light gradually increase and decrease in brightness. Confirm
+this with the serial monitor. If you\'re successful, then format, save,
+add, and commit your code.
+
+![](images/External_A9_Fade.gif)
+
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+
+Checkpoint 6: Second Fade 
+-------------------------------------------------------
+
+Open a new sketch and delete the comments. This time we\'re going to use
+the `if` statement and we will need only one loop instead of two.
+First, set two variables at the very beginning of the program, before
+the `void setup()` function:
 
 ```
-if (Serial.available() \> 0) {\
-  String command;\
-  command = Serial.readString();\
+int lightValue = 0;
+int delta = 1;
+```
 
+We are setting the initial value of `lightValue` to 0 and the value of
+`delta` (which means change) to 1. Then, add code to set pin 9 to
+output and activate the serial connection. Save the program as *ifFade*
+and then add and commit it to version control.
+
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+
+Checkpoint 7: Add, Flip 
+-----------------------------------------------------
+
+Now, in the `void loop()` section, add:
+
+```
+lightValue = lightValue + delta;
+if (lightValue <= 0 || lightValue >= 255) {
+  delta = -delta;
 }
 ```
 
-You\'ll notice that there is a blank line. In this blank line, cut and
-paste your `if / else block` and run **Auto Format**. Now you have `if`
-statements nested inside another if statement. The
-[Serial.available()](https://www.arduino.cc/en/Serial/Available)
-function checks to see if there is anything in the serial buffer. Once
-there is, it creates a string variable called command and then stores
-whatever is in the serial buffer as command.
+Explain what you think this code does.
 
-![](images/javaw_2017-01-10_15-05-36.png)
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
-Now, find the functions that turn the light on and off and change them
-so that they are triggered base on the command variable, not directly by
-the serial buffer.\
+Checkpoint 8: Finish and Test 
+-----------------------------------------------------------
 
-Then add this command underneath your Serial.begin() function in your
-`void setup()` function:
+Add code to the `void loop()` section to output `lightValue` to both
+the LED and the serial monitor, and add a ten millisecond delay. Then
+upload the code to your Arduino. If it works, then format, save, add,
+and commit it.
 
-```
-Serial.setTimeout(10);
-```
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
-This will make your Arduino scan the serial buffer every ten
-milliseconds instead of once a second. Now test it and see if it does
-what you tell it to reliably. If it works, save, add, and commit your
-code.\
+Checkpoint 9: Comment Your Code 
+-------------------------------------------------------------
 
-*If you want an extra challenge, see if you can get rid of the nested
-block. In other words, see if you can change the code so that you don\'t
-have an `if` inside another `if`. Also, see if you can add an else that
-responds to the user if they type anything except \"On\" or \"Off\" to
-help them figure out what to do.*\
+Go back and add comments to each line of code from both programs
+explaining what each does. Then save, add, commit, and push your code.
 
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
-
-Checkpoint 10: Comment Your Code 
---------------------------------
-
-Go back and add comments to each line of code explaining what it does.
-Then save, add, commit, and push your code.
-
-<p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
