@@ -18,7 +18,7 @@
     </header>
     <p>One of the advantages of programming with the Arduino platform is that you can often see immediate results from your code. We're going to create a program that causes LEDs to blink, both on the board and on a separate breadboard.</p>
     <h2 id="checkpoint-1-connect-your-arduino">Checkpoint 1: Connect Your Arduino</h2>
-    <p>Get an Arduino from the table at the back of the room and a USB-A to USB-B cable. Connect it to your laptop and open the Arduino IDE. If it does not automatically open an empty sketch (program) then go to the <i>File</i> menu and select <i>New</i>. Make sure you have the correct port selected.</p>
+    <p>Connect your Arduino to your computer and open the Arduino IDE. If it does not automatically open an empty sketch (program) then go to the <i>File</i> menu and select <i>New</i>. Make sure you have the correct port selected.</p>
     <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
     <h2 id="checkpoint-2-output-pin">Checkpoint 2: Output Pin</h2>
     <p>For the program to work, you need to designate one pin as an output pin. The Arduino Uno has a built-in LED attached to pin 13, which is what we will use for now. On line three of your empty program, press <span class="keyboardShortcut">Tab</span> and type:</p>
@@ -44,13 +44,13 @@ delay(1000);</code></pre>
     <p>What part or parts of your code do you think turns on the light? What part or parts turns it off? What part or parts control the duration of the blink? What unit do you think is used to measure time?</p>
     <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
     <h2 id="checkpoint-4-timing">Checkpoint 4: Timing</h2>
-    <p>The way your program works right now, your LED is on for one second and off for one second. Modify it so that it is on for one second and off for two. The amount of time an LED is on during one cycle is called the duty cycle. So a duty cycle of 50% means that the light is on half the duration of a cycle. Try at least three other combinations of timings. Be prepared to dionstrate changing the timings for Mr. Olinda and express thi both in seconds as well as duty cycles.</p>
+    <p>The way your program works right now, your LED is on for one second and off for one second. Modify it so that it is on for one second and off for two. The amount of time an LED is on during one cycle is called the duty cycle. So a duty cycle of 50% means that the light is on half the duration of a cycle. Try at least three other combinations of timings. Be prepared to demonstrate changing the timings for Mr. Olinda and express them both in seconds as well as duty cycles.</p>
     <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
     <h2 id="checkpoint-5-patterns">Checkpoint 5: Patterns</h2>
     <p>Now that you know how to adjust the timing of the lights, add extra lines of code to turn the light on and off in different patterns. You must create a pattern that uses at least four ON/OFF pairs, and each pair must be different.</p>
     <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
     <h2 id="checkpoint-6-commenting-your-code">Checkpoint 6: Commenting Your Code</h2>
-    <p>Go ahead and add comments on each line of code, explaining what you think each line does. Comments are preceded by <code>//</code> so that the compiler knows they're not supposed to be code. You can add comments after code or on their own lines.</p>
+    <p>Go ahead and add comments on each line of code, explaining what you think each line does. Comments are preceded by <code>//</code> so that the compiler knows they're not supposed to be code. Add the comments on the same line as the code they explain.</p>
     <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
     <h2 id="checkpoint-7-external-led-setup">Checkpoint 7: External LED Setup</h2>
     <p>Take a minute to review the following video and and charts so that you have an idea of how to identify resistors by color code. Right-click an image and view it individually to get a closer look.</p>
