@@ -18,10 +18,10 @@
     </header>
     <p>One of the advantages of programming with the Arduino platform is that you can often see immediate results from your code. We're going to create a program that causes LEDs to blink, both on the board and on a separate breadboard.</p>
     <h2 id="checkpoint-1-connect-your-arduino">Checkpoint 1: Connect Your Arduino</h2>
-    <p>Get an Arduino from the table at the back of the room and a USB-A to USB-B cable. Connect it to your laptop and open the Arduino IDE. If it does not automatically open an ipty sketch (program) then go to the <i>File</i> menu and select <i>New</i>. Make sure you have the correct port selected.</p>
+    <p>Get an Arduino from the table at the back of the room and a USB-A to USB-B cable. Connect it to your laptop and open the Arduino IDE. If it does not automatically open an empty sketch (program) then go to the <i>File</i> menu and select <i>New</i>. Make sure you have the correct port selected.</p>
     <p class="checkpoint">Raise your hand and have Mr. Olinda verify this checkpoint.</p>
     <h2 id="checkpoint-2-output-pin">Checkpoint 2: Output Pin</h2>
-    <p>For the program to work, you need to designate one pin as an output pin. The Arduino Uno has a built-in LED attached to pin 13, which is what we will use for now. On line three of your ipty program, press <span class="keyboardShortcut">Tab</span> and type:</p>
+    <p>For the program to work, you need to designate one pin as an output pin. The Arduino Uno has a built-in LED attached to pin 13, which is what we will use for now. On line three of your empty program, press <span class="keyboardShortcut">Tab</span> and type:</p>
     <pre><code>pinMode(13, OUTPUT);</code></pre>
     <p>This tells the board to set pin 13 to output. Go to the <i>Tools</i> menu and choose <i>Auto Format</i>. Then verify your code to make sure you haven't made any syntax errors. At this point your code won't do anything, so do not upload it yet. Just save it as <i>blink</i> in your <i>cspProjects/arduino</i> folder. Then add and commit it to version control.</p>
     <figure>
