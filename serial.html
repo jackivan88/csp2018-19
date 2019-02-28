@@ -61,20 +61,20 @@ else if (Serial.readString() == &quot;Off&quot;) {
   digitalWrite(13, LOW);
 }</code></pre>
     <p><img src="images/javaw_2017-01-10_12-27-14.png" /></p>
-    <p>The <a href="https://www.arduino.cc/en/Serial/ReadString"><code>Serial.readString()</code></a> function waits for you to send something from the computer to the Arduino via the serial connection and then reads it as if it is a group of text characters. If you were sending only integers or floating point values, you would use a different function. Open your serial monitor and then upload the code. You should now be able to type "On" or "Off" into the serial monitor to turn the light on and off. If it works, go ahead and save, add, and commit your code. However, you'll notice that it doesn't always respond. This is because we're directly reading the serial buffer, which is emptied every second. Sometimes it is emptied before the program has a chance to read it. We're going to fix this later.</p>
+    <p>The <a href="https://www.arduino.cc/en/Serial/ReadString"><code>Serial.readString()</code></a> function waits for you to send something from the computer to the Arduino via the serial connection and then reads it as if it is a group of text characters. If you were sending only integers or floating point values, you would use a different function. Open your serial monitor and then upload the code. You should now be able to type "On" or "Off" into the serial monitor to turn the light on and off. Go ahead and save, add, and commit your code. However, you'll notice that it doesn't respond. This is because we're directly reading the serial buffer, which is emptied every second. Sometimes it is emptied before the program has a chance to read it or it contains extra, invisible characters. We're going to fix this later.</p>
     <p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
     <h2 id="checkpoint-8-feedback">Checkpoint 8: Feedback</h2>
-    <p>Now that your light turns on and off, let's add some feedback for the user other than the light. Even though the light provides feedback, it's possible that the light could be defective. Having another way of knowing whether your code is working helps you to find problems with your software and hardware. I want you to add <code>Serial.println()</code> functions in your <code>if / else</code> block to tell you what the Arduino is doing in response to your commands.</p>
+    <p>Let's add some feedback for the user other than the light. Even though the light provides feedback, it's possible that the light could be defective. Having another way of knowing whether your code is working helps you to find problems with your software and hardware. I want you to add <code>Serial.println()</code> functions in your <code>if / else</code> block to tell you what the Arduino is doing in response to your commands.</p>
     <p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
     <h2 id="checkpoint-9-nested-blocks">Checkpoint 9: Nested Blocks</h2>
     <p>Up until now, the Arduino has been unreliable in its response to our commands. We're going to fix that. At the beginning of your <code>void loop()</code> function, add the following:</p>
     <pre><code>if (Serial.available() &gt; 0) {
   String command;
   command = Serial.readString();
+  command.trim();
 
 }</code></pre>
-    <p>You'll notice that there is a blank line. In this blank line, cut and paste your <code>if / else block</code> and run <strong>Auto Format</strong>. Now you have <code>if</code> statements nested inside another if statement. The <a href="https://www.arduino.cc/en/Serial/Available"><code>Serial.available()</code></a> function checks to see if there is anything in the serial buffer. Once there is, it creates a string variable called command and then stores whatever is in the serial buffer as command.</p>
-    <p><img src="images/javaw_2017-01-10_15-05-36.png" /></p>
+    <p>You'll notice that there is a blank line. In this blank line, cut and paste your <code>if / else block</code> and run <strong>Auto Format</strong>. Now you have <code>if</code> statements nested inside another if statement. The <a href="https://www.arduino.cc/en/Serial/Available"><code>Serial.available()</code></a> function checks to see if there is anything in the serial buffer. Once there is, it creates a string variable called <i>command</i> and then stores whatever is in the serial buffer as <i>command</i>. `command.trim()` gets rid of any extra characters that might appear to the computer even though they're not visible to the user.</p>
     <p>Now, find the functions that turn the light on and off and change them so that they are triggered based on the command variable, not directly by the serial buffer.</p>
     <p>Then add this command underneath your <code>Serial.begin()</code> function in your <code>void setup()</code> function:</p>
     <pre><code>Serial.setTimeout(10);</code></pre>
