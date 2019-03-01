@@ -48,3 +48,29 @@ _Hint: this is why we used `.trim` in the Serial lesson._
 
 <p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
+## Checkpoint 5: Sanitizing Data
+
+This gives us an opportunity to build a tool that will clean out certain characters from our serial input. Let's assume we only want to use visible characters and get rid of line feeds, newlines, spaces, and other "invisible" characters. The Arduino library has a function designed to detect whether a character has visible content called `isGraph()`. Replace your `void loop()` content with:
+
+```
+  while (Serial.available() > 0) {
+    char inbound = Serial.read();
+    if (isGraph(inbound)) {
+      Serial.println(inbound);
+    }
+    else {
+    }
+  }
+```
+
+Now type in a complete sentence and send it to your Arduino. Your result should come back with all the spaces removed. This will help us clean up our data and make it easier to work with. Now, create a function called `void clean()` at the bottom of your program and cut and paste the content of your `void loop()` into this new function. Call the function in your now-empty `void loop()`, which should look like this:
+
+```
+void loop() {
+  clean();
+}
+```
+
+Upload your code and test it. It should work exactly as it did before, but now you've created your own function that can be used anywhere in your code. _However, variables declared within this function aren't available anywhere else yet._ Add, commit, and push your code.
+
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
