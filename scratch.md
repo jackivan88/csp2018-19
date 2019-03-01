@@ -1,168 +1,50 @@
-Fade 
-=====
+# Calculate
 
-We\'re going to learn how to make an LED gradually fade on and off.
-We\'ll actually use two different methods. It\'s important for you to
-realize that there is almost always more than one way to solve a problem
-in computer science. Usually one of them is optimal, but not always.
+In this lesson we will use our Arduinos as primitive calculators to perform addition, subtraction, multiplication, and division. We will also implement [`while`](https://www.arduino.cc/reference/en/language/structure/control-structure/while/) and `switch` in addition to `if / else` statements.
 
-Checkpoint 1: Connect Your Arduino 
-----------------------------------------------------------------
+## Checkpoint 1: Connect Your Arduino
 
-Get your supplies and take out only the Arduino and the USB cable.
-Connect your Arduino to your laptop, open the Arduino IDE, and make sure
-the correct port is selected.
+Get your supplies and take out only the Arduino and the USB cable. Connect your Arduino to your laptop, open the Arduino IDE, and make sure the correct port is selected.
 
-<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+## Checkpoint 2: Set Up Setup
 
-Checkpoint 2: First Fade 
------------------------------------------------------
+Open a new sketch. Use `Serial.begin()` to open a 9600-baud serial connection when the Arduino powers on. Save the new program as _serialCalculate_. Upload the sketch to your Arduino and then add, commit, and push your changes.
 
-The first program uses the [`for` statement](https://www.arduino.cc/en/Reference/For). This type of
-statement is usually used to run the code inside repeatedly until the
-test condition is no longer true. Open a new sketch and delete the
-comments. Then add code to activate the serial connection when the
-Arduino turns on and set pin 9 to output. Then save the program as
-*forFade*. Add and commit your code to version control.
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
-<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+## Checkpoint 3: Program Scope
 
-Checkpoint 3: for 
------------------------------------------------
+We need to decide what we want the program to accomplish so that we can design it appropriately. In this case, we know that we want to perform four operations: addition, subtraction, multiplication, and division. However, we also need to decide how many numbers we want the program to work with and whether those numbers should be [integers](https://www.arduino.cc/reference/en/language/variables/data-types/int/), [longs](https://www.arduino.cc/reference/en/language/variables/data-types/long/), or [floating point numbers](https://www.arduino.cc/reference/en/language/variables/data-types/float/). Integers are whole numbers up to 16 bits in size, longs are whole numbers up to 32 bits in size, and floats are numbers with decimal values up to 32 bits in size.
 
-Then add two `for` statements inside the `void loop()` section. A
-`for` statement consists of:
+Look at your reference to determine the largest possible integer and long your Arduino can handle. For now, we will work with integers.
+
+At the very beginning of your program, you should declare global variables so that they are available for your entire program to use. We will declare four variables so that our program can perform operations involving two numbers. Add the following lines of code at the top of your program:
 
 ```
-for (initialize; test; increment/decrement) {
-   
-}
+int number1;
+char sign;
+int number2;
+int result;
 ```
 
-The initialization happens once, the test happens each time through the
-loop, and the [increment or decrement](https://www.arduino.cc/en/Reference/Increment) is executed if
-the test is true. The loop stops as soon as the test is false. The first
-`for` statement will gradually increase the brightness of the LED to
-the maximum value of 255, and the second will decrease the brightness of
-the LED to the minimum value of 0.
+This tells your Arduino that you want three integer variables to work with along with one character variable. Save, add, commit, and push your code. Then be prepared to explain what information will go in each variable.
 
-The initialization of the first `for` statement is:
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
-```
-int lightValue = 0
-```
+## Checkpoint 4: Set Up Loop
 
-The test for the first `for` statement is:
+We need to set up our program to handle incoming serial data. Before we write the actual code, we're going to create a test to make sure our incoming data is being processed. Add the following code to your `void loop()` section:
 
 ```
-lightValue <= 255
+  while (Serial.available() > 0) {
+    char inbound = Serial.read();
+    Serial.println(inbound);
+  }
 ```
 
-The loop increments the value of `lightValue` once each time:
+We are declaring a `char` variable within the `while` statement, which means it won't be available everywhere in our program. This is acceptable here. Now, upload your code and type something into the serial monitor. Your program should send back what you typed, broken into one character per line. Try a few different strings of text. Then, change your `Serial.println(inbound);` to `Serial.println(inbound, HEX);` and see what happens when you send text. You'll notice that you're getting back more characters than you sent. Why do you think this is? Try `BIN` and `OCT` to see what happens. These return what you sent in hexadecimal, binary, and octal respectively. But why are there more characters than when you first ran the test?
 
-```
-lightValue++
-```
+_Hint: this is why we used `.trim` in the Serial lesson._
 
-Replace the placeholders with the code above. Once these are inserted,
-you\'re ready to add code inside the for statement that will run each
-time. First, you need to send the `lightValue` to pin 9, but instead
-of using
-[`digitalWrite`](https://www.arduino.cc/en/Reference/DigitalWrite),
-you will use
-[`analogWrite`](https://www.arduino.cc/en/Reference/AnalogWrite). The
-first is binary: either on or off. The second has a range of values from
-0 to 255. It looks like:
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
-```
-analogWrite(pin, value)
-```
-
-Only some of the pins support analog output. Use `analogWrite` to send
-`lightValue` to pin 9. Then add code to output `lightValue` to the
-serial monitor as well. Then add a ten millisecond delay at the end of
-the loop.
-
-Look at your board and identify the symbol that tells you which ones
-support analog.
-
-<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
-
-Checkpoint 4: And Back Down 
----------------------------------------------------------
-
-The contents of the second `for` statement are identical, but the
-initialization, test, and
-[`increment/decrement`](https://www.arduino.cc/en/Reference/Increment) are
-different. Figure out how to reduce the brightness from a starting value
-of 255 down to 0.
-
-<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
-
-Checkpoint 5: Testing 
---------------------------------------------------
-
-Set up your Arduino so that it is connected to the red external LED with
-a 1K resistor between the Arduino and the LED. Make sure your LED is
-wired into the right pin. Then upload your code and test it. You should
-see the light gradually increase and decrease in brightness. Confirm
-this with the serial monitor. If you\'re successful, then format, save,
-add, and commit your code.
-
-![](images/External_A9_Fade.gif)
-
-<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
-
-Checkpoint 6: Second Fade 
--------------------------------------------------------
-
-Open a new sketch and delete the comments. This time we\'re going to use
-the `if` statement and we will need only one loop instead of two.
-First, set two variables at the very beginning of the program, before
-the `void setup()` function:
-
-```
-int lightValue = 0;
-int delta = 1;
-```
-
-We are setting the initial value of `lightValue` to 0 and the value of
-`delta` (which means change) to 1. Then, add code to set pin 9 to
-output and activate the serial connection. Save the program as *ifFade*
-and then add and commit it to version control.
-
-<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
-
-Checkpoint 7: Add, Flip 
------------------------------------------------------
-
-Now, in the `void loop()` section, add:
-
-```
-lightValue = lightValue + delta;
-if (lightValue <= 0 || lightValue >= 255) {
-  delta = -delta;
-}
-```
-
-Explain what you think this code does.
-
-<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
-
-Checkpoint 8: Finish and Test 
------------------------------------------------------------
-
-Add code to the `void loop()` section to output `lightValue` to both
-the LED and the serial monitor, and add a ten millisecond delay. Then
-upload the code to your Arduino. If it works, then format, save, add,
-and commit it.
-
-<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
-
-Checkpoint 9: Comment Your Code 
--------------------------------------------------------------
-
-Go back and add comments to each line of code from both programs
-explaining what each does. Then save, add, commit, and push your code.
-
-<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
