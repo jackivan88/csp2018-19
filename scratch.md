@@ -58,8 +58,6 @@ This gives us an opportunity to build a tool that will clean out certain charact
     if (isGraph(inbound)) {
       Serial.println(inbound);
     }
-    else {
-    }
   }
 ```
 
@@ -74,3 +72,68 @@ void loop() {
 Upload your code and test it. It should work exactly as it did before, but now you've created your own function that can be used anywhere in your code. _However, variables declared within this function aren't available anywhere else yet._ Add, commit, and push your code.
 
 <p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+
+## Checkpoint 6: Create and Test an Array
+
+[Arrays](https://www.arduino.cc/reference/en/language/variables/data-types/array/) allow us to store a collection of variables, such as integers or characters, and then access them again later. Since we are trying to store information about numbers and characters, for now we will store them in a `char` array. Later we will parse the information out into integers and characters.
+
+Because we are designing this program with our own functions, we are going to create a new function called `printCleanData()` that will help us test our modifications, add some global variables, and make changes to our `clean()` function.
+
+## Checkpoint 7: Declare Global Variables
+
+At the top of your program, declare a character array for your data that has 32 slots:
+
+```
+char cleanData[32];
+```
+
+Then, declare a new type of variable: the [boolean](https://www.arduino.cc/reference/en/language/variables/data-types/bool/). This variable will be used to tell the program whether or not there is new data to work with when we change our `clean()` function.
+
+```
+bool newData = false;
+```
+
+Why do we use a boolean variable, and what are the possible states for a boolean variable?
+
+## Checkpoint 8: Edit clean()
+
+Modify your `clean()` function to pass your serial input along to the new `cleanData` array. First, declare a new integer variable called _count_ and set it to zero. You should do this inside your `while` loop at the very beginning, otherwise it won't be available later when you need it. Then, change your `if` statement from:
+
+```
+if (isGraph(inbound)) {
+  Serial.println(inbound);
+}
+```
+
+to:
+
+```
+if (isGraph(inbound)) {
+  newData = true;
+  cleanData[count] = inbound;
+  count++;
+}
+```
+
+This will send the data to your array instead of the serial monitor. First, it flips the boolean from _false_ to _true_, which we will take advantage of later. Then it sends each character to a slot in the array based on the `count` variable. Remember that many times in programming, lists or arrays start at zero, not one. This is true in C++, which is what we are using to program our Arduinos. Therefore, at the moment, the `count` variable is zero, since that's what we set it to at the beginning of our `while` statement. We're placing the `inbound` variable's value in slot 0 of the array. However, the next time the loop runs, we want it to place the next character in the next slot, so we use the `++` iterator. Iterating is simply adding to the previous value. So if `count` was zero before, `count++` makes it one. The next time it will be two, and so on. If we send "This is a test" to our Arduino, these modifications will result in the `cleanData` array containing `{ T, h, i, s, i, s, a, t, e, s, t ....}`.
+
+How many of our 32 slots would be in use at this point?
+
+## Checkpoint 9: Create printCleanData()
+
+Running our program would work, but we wouldn't be able to tell, so we're going to design a temporary function to help us test it. We will take advantage of our `newData` boolean, learn how to test for equivalance, reset our array, and reset our boolean to indicate the program is ready to run again.
+
+Create a new function at the bottom of your program called _printCleanData_ and then type in the following statement:
+
+```
+if (newData == true) {
+  Serial.println(cleanData);
+  char cleanData[32] = "";
+  newData = false;
+}
+```
+
+At this point, make sure to format your code and verify it. Upload it and test it by sending the Arduino several phrases and sentences to see if you get clean data back. If you don't, see if you can figure out what's missing from your `void loop()` function and fix it. Upload and test, and if your code works, go ahead and add, commit, and push your code.
+
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+
