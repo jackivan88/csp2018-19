@@ -1,7 +1,7 @@
 long number1;
 long number2;
 long result;
-long integers[32];
+long integers[2];
 
 char sign;
 
