@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Computer Science Principles: Calculate</title>
+    <meta charset="utf-8">
+    <meta name="author" content="John Olinda">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instructions for the Calculate lesson">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <a id="homeButton" href="index.html">Return to Home Page</a>
+    <header>
+        <h1 id="serial">Calculate</h1>
+        <p class="subtitle">Chapel Field Christian Schools</p>
+    </header>
+
+    <p>In this lesson you will use your Arduino as primitive calculators to perform addition, subtraction,
+        multiplication,
+        and division. You will also implement <a
+            href="https://www.arduino.cc/reference/en/language/structure/control-structure/while/"><code>while</code></a>
+        and
+        <a
+            href="https://www.arduino.cc/reference/en/language/structure/control-structure/switchcase/"><code>switch</code></a>
+        in addition to <a
+            href="https://www.arduino.cc/reference/en/language/structure/control-structure/else/"><code>if / else</code></a>
+        statements.</p>
+    <h2 id="checkpoint-1-connect-your-arduino">Checkpoint 1: Connect Your Arduino</h2>
+    <p>Get your supplies and take out only the Arduino and the USB cable. Connect your Arduino to your laptop, open the
+        Arduino IDE, and make sure the correct port is selected.</p>
+    <h2 id="checkpoint-2-set-up-setup">Checkpoint 2: Set Up Setup</h2>
+    <p>Open a new sketch. Use <code>Serial.begin()</code> to open a 9600-baud serial connection when the Arduino powers
+        on.
+        Save the new program as <em>serialCalculate</em>. Upload the sketch to your Arduino and then add, commit, and
+        push
+        your changes.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-3-program-scope">Checkpoint 3: Program Scope</h2>
+    <p>You need to decide what you want a program to accomplish so that you can design it appropriately. In this case,
+        you
+        know that you want to perform four operations: addition, subtraction, multiplication, and division. However, you
+        also
+        need to decide how many numbers you want the program to work with and whether those numbers should be <a
+            href="https://www.arduino.cc/reference/en/language/variables/data-types/int/">integers</a>, <a
+            href="https://www.arduino.cc/reference/en/language/variables/data-types/long/">longs</a>, or <a
+            href="https://www.arduino.cc/reference/en/language/variables/data-types/float/">floating point numbers</a>.
+        Integers
+        are whole numbers up to 16 bits in size, longs are whole numbers up to 32 bits in size, and floats are numbers
+        with
+        decimal values up to 32 bits in size.</p>
+    <p>Look at your reference to determine the largest possible integer and long your Arduino can handle. For now, you
+        will
+        work with integers.</p>
+    <p>At the very beginning of your program, you should declare global variables so that they are available for your
+        entire
+        program to use. You will declare four variables so that your program can perform operations involving two
+        numbers. Add
+        the following lines of code at the top of your program:</p>
+    <pre><code>int number1;
+    char sign;
+    int number2;
+    int result;</code></pre>
+    <p>This tells your Arduino that you want three integer variables to work with along with one character variable.
+        Save,
+        add, commit, and push your code. Then be prepared to explain what information will go in each variable.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-4-set-up-loop">Checkpoint 4: Set Up Loop</h2>
+    <p>We need to set up your program to handle incoming serial data. Before you write the actual code, we’re going to
+        create a test to make sure your incoming data is being processed. Add the following code to your
+        <code>void loop()</code> section:</p>
+    <pre><code>  while (Serial.available() &gt; 0) {
+        char inbound = Serial.read();
+        Serial.println(inbound);
+      }</code></pre>
+    <p>We are declaring a <code>char</code> variable within the <code>while</code> statement, which means it won’t be
+        available everywhere in your program. This is acceptable here. Now, upload your code and type something into the
+        serial monitor. Your program should send back what you typed, broken into one character per line. Try a few
+        different
+        strings of text. Then, change your <code>Serial.println(inbound);</code> to
+        <code>Serial.println(inbound, HEX);</code>
+        and see what happens when you send text. You’ll notice that you’re getting back more characters than you sent.
+        Why do
+        you think this is? Try <code>BIN</code> and <code>OCT</code> to see what happens. These return what you sent in
+        hexadecimal, binary, and octal respectively. But why are there more characters than when you first ran the test?
+    </p>
+    <p><em>Hint: this is why you used <code>.trim</code> in the Serial lesson.</em></p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-5-sanitizing-data">Checkpoint 5: Sanitizing Data</h2>
+    <p>This gives you an opportunity to build a tool that will clean out certain characters from your serial input.
+        Let’s
+        assume you only want to use visible characters and get rid of line feeds, newlines, spaces, and other
+        “invisible”
+        characters. The Arduino library has a function designed to detect whether a character has visible content called
+        <code>isGraph()</code>. Replace your <code>void loop()</code> content with:</p>
+    <pre><code>  while (Serial.available() &gt; 0) {
+        char inbound = Serial.read();
+        if (isGraph(inbound)) {
+          Serial.println(inbound);
+        }
+      }</code></pre>
+    <p>Now type in a complete sentence and send it to your Arduino. Your result should come back with all the spaces
+        removed. This will help you clean up your data and make it easier to work with. Now, create a function called
+        <code>void cleanData()</code> at the bottom of your program and cut and paste the content of your
+        <code>void loop()</code> into this new function. Call the function in your now-empty <code>void loop()</code>,
+        which
+        should look like this:</p>
+    <pre><code>void loop() {
+      cleanData();
+    }</code></pre>
+    <p>Upload your code and test it. It should work exactly as it did before, but now you’ve created your own function
+        that
+        can be used anywhere in your code. <em>However, variables declared within this function aren’t available
+            anywhere else
+            yet.</em> Add, commit, and push your code.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-6-create-and-test-an-array">Checkpoint 6: Create and Test an Array</h2>
+    <p><a href="https://www.arduino.cc/reference/en/language/variables/data-types/array/">Arrays</a> allow you to store
+        a
+        collection of variables, such as integers or characters, and then access them again later. Since you are trying
+        to
+        store information about numbers and characters, for now you will store them in a <code>char</code> array. Later
+        you
+        will parse the information out into integers and characters.</p>
+    <p>Because you are designing this program with your own functions, you are going to create a new function called
+        <code>printCleanData()</code> that will help you test your modifications, add some global variables, and make
+        changes
+        to your <code>cleanData()</code> function.</p>
+    <h2 id="checkpoint-7-declare-global-variables">Checkpoint 7: Declare Global Variables</h2>
+    <p>At the top of your program, declare a character array for your data that has 32 slots:</p>
+    <pre><code>char cleanData[32];</code></pre>
+    <p>Then, declare a new type of variable: the <a
+            href="https://www.arduino.cc/reference/en/language/variables/data-types/bool/">boolean</a>. This variable
+        will be
+        used to tell the program whether or not there is new data to work with when you change your
+        <code>cleanData()</code>
+        function.</p>
+    <pre><code>bool newData = false;</code></pre>
+    <p>Why do you use a boolean variable, and what are the possible states for a boolean variable?</p>
+    <h2 id="checkpoint-8-edit-cleandata">Checkpoint 8: Edit cleanData()</h2>
+    <p>Modify your <code>cleanData()</code> function to pass your serial input along to the new <code>cleanData</code>
+        array. First, declare a new integer variable called <em>count</em> and set it to zero. You should do this before
+        your
+        <code>while</code> loop at the very beginning, otherwise it won’t be available later when you need it. Then,
+        change
+        your <code>if</code> statement from:</p>
+    <pre><code>if (isGraph(inbound)) {
+      Serial.println(inbound);
+    }</code></pre>
+    <p>to:</p>
+    <pre><code>if (isGraph(inbound)) {
+      newData = true;
+      cleanData[count] = inbound;
+      count++;
+    }</code></pre>
+    <p>This will send the data to your array instead of the serial monitor. First, it flips the boolean from
+        <em>false</em>
+        to <em>true</em>, which you will take advantage of later. Then it sends each character to a slot in the array
+        based on
+        the <code>count</code> variable. Remember that many times in programming, lists or arrays start at zero, not
+        one. This
+        is true in C++, which is what you are using to program your Arduino. Therefore, at the moment, the
+        <code>count</code>
+        variable is zero, since that’s what you set it to at the beginning of your <code>while</code> statement. We’re
+        placing
+        the <code>inbound</code> variable’s value in slot 0 of the array. However, the next time the loop runs, you want
+        it to
+        place the next character in the next slot, so you use the <code>++</code> iterator. Iterating is simply adding
+        to the
+        previous value. So if <code>count</code> was zero before, <code>count++</code> makes it one. The next time it
+        will be
+        two, and so on. If you send “This is a test” to your Arduino, these modifications will result in the
+        <code>cleanData</code> array containing <code>{ T, h, i, s, i, s, a, t, e, s, t ....}</code>.</p>
+    <p>How many of your 32 slots would be in use at this point?</p>
+    <h2 id="checkpoint-9-create-printcleandata">Checkpoint 9: Create printCleanData()</h2>
+    <p>Running your program would work, but you wouldn’t be able to tell, so you’re going to design a temporary function
+        to
+        help you test it. You will take advantage of your <code>newData</code> boolean, learn how to test for
+        equivalance,
+        reset your array, and reset your boolean to indicate the program is ready to run again.</p>
+    <p>Create a new function at the bottom of your program called <em>printCleanData</em> and then type in the following
+        statement:</p>
+    <pre><code>if (newData == true) {
+      Serial.println(cleanData);
+      char cleanData[32] = &quot;&quot;;
+      newData = false;
+    }</code></pre>
+    <p>At this point, make sure to format your code and verify it. Upload it and test it by sending the Arduino several
+        phrases and sentences to see if you get clean data back. If you don’t, see if you can figure out what’s missing
+        from
+        your <code>void loop()</code> function and fix it. Upload and test, and if your code works, go ahead and add,
+        commit,
+        and push your code.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-10-modify-printcleandata">Checkpoint 10: Modify printCleanData()</h2>
+    <p>Go ahead and change <code>printCleanData()</code> to <code>parseData()</code> everywhere it appears in the
+        program.
+        Then rename your array to <em>integers</em>. Now it’s time to use the variables you declared at the beginning of
+        the
+        program. Replace</p>
+    <pre><code>Serial.println(cleanData);
+    char cleanData[32] = &quot;&quot;;</code></pre>
+    <p>with</p>
+    <pre><code>number1 = integers[0];
+    number2 = integers[1];
+    Serial.println(number1);
+    Serial.println(sign);
+    Serial.println(number2);</code></pre>
+    <p>Note that when you are assigning a value to a variable, the variable goes on the left of the equation, but when
+        you
+        are using it as a value for something else, it goes on the right. The <code>Serial.println()</code> functions
+        will
+        help you test the program. Add, commit, and push your code.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-11-modify-cleandata">Checkpoint 11: Modify cleanData()</h2>
+    <p>Now, you need to make significant changes to <code>cleanData()</code>.</p>
+    <pre><code>void cleanData() {
+      count = 0;
+      while (Serial.available() &gt; 0) {
+        newData = true;
+        if (isDigit(Serial.peek()) == true) {
+          integers[count] = Serial.parseInt();
+          count++;
+          Serial.print(&quot;The current count is &quot;);
+          Serial.println(count);
+        }
+        else if (isGraph(Serial.peek()) == true) {
+          sign = Serial.read();
+          Serial.println(sign);
+        }
+        else {
+          Serial.read();
+        }
+      }
+    }</code></pre>
+    <p>As before, the <code>cleanData()</code> function sets <code>count</code> to zero, and you still have a
+        <code>while</code> statement. You’re also still toggling your <code>newData</code> boolean to true, which your
+        program
+        will use later on. Your <code>if</code> statement is where things start to get a little more complicated.
+        <code>(isDigit(Serial.peek()) == true)</code> tests to see if the incoming serial data starts with a digit by
+        using
+        <code>Serial.peek()</code>. Peek looks at the data without removing it from the serial buffer, which lets you do
+        something depending on what it is. In this case, you’re checking to see if it’s a digit, and if it is, you’re
+        running
+        the <code>parseInt()</code> function and storing the result in the first slot of the <code>integers</code>
+        array.
+        You’re then iterating <code>count</code> and printing the current count to the serial monitor.</p>
+    <p>Now, study the <code>else if</code> and <code>else</code> statements and prepare to explain what they do. <em>If
+            you
+            run the program at this point it will not work. We will address this in the next checkpoint, but feel free
+            to try it
+            and see what happens.</em> Add, commit, and push your code.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-12-fix-cleandata">Checkpoint 12: Fix cleanData()</h2>
+    <p>The reason your code will not work is because your microcontroller is so much faster than your serial connection.
+        Thus, it can read a byte from the serial buffer and cycle through the whole program in less time than it takes
+        for the
+        next byte to arrive. So you will get unusual errors in your results because of incomplete data transfer. There
+        are
+        multiple ways to solve this, and <a href="http://gammon.com.au/serial">the optimal solution</a> involves storing
+        the
+        serial buffer locally where it can be parsed as quickly as possible. However, a conceptually simpler, but
+        slower,
+        solution is to artificially delay the program long enough for the serial connection to keep up. To do this, add
+        a
+        one-millisecond delay to your <em>isDigit</em> and <em>isGraph</em> statements and test your program again.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-13-switch">Checkpoint 13: switch</h2>
+    <p>Now it is time to actually crunch numbers. Create a new function called <em>calculate</em> and open it with an
+        <code>if</code> statement that tests whether <code>readyToCalculate</code> is <em>true</em>. You should also
+        create a
+        <code>Serial.println</code> that will let you know this function is running to help you debug errors. Then,
+        create a
+        <a
+            href="https://www.arduino.cc/reference/en/language/structure/control-structure/switchcase/"><code>switch</code></a>
+        control structure. It will look like:</p>
+    <pre><code>switch (var) {
+      case label1:
+        // statements
+        break;
+      case label2:
+        // statements
+        break;
+      default:
+        // statements
+        break;
+    }</code></pre>
+    <p>Your <code>switch</code> control structure is based on your <code>sign</code> variable and should start like
+        this:
+    </p>
+    <pre><code>switch (sign) {
+      case &#39;+&#39; :
+        result = number1 + number2;
+        readyToPrint = true;
+        break;</code></pre>
+    <p>Create cases for the other three operations and then end with a default:</p>
+    <pre><code>default:
+      Serial.println(&quot;This operation is not supported. Please try again.&quot;);
+      readyToPrint = false;
+      break;</code></pre>
+    <p>After you close your <code>switch</code>, toggle the <code>readyToCalculate</code> boolean to <em>false</em>. Add
+        <code>Serial.print()</code> to each case to help debug any mistakes. Add your new function to
+        <code>void loop()</code>
+        and save, add, commit, and push your work.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-14-show-your-work">Checkpoint 14: Show Your Work</h2>
+    <p>It’s time to print. Create a function called <em>concatenateResultsAndPrint</em> and add it to your
+        <code>void loop()</code> function. Create an <code>if</code> statement testing whether the
+        <code>readyToPrint</code>
+        boolean is <em>true</em>. Inside the <code>if</code> statement you will concatenate several variables and then
+        print
+        your results to the serial monitor. Declare a local <code>String</code> variable called
+        <em>printCalculation</em> and
+        set it to
+        <code>String(number1) + ' ' + String(sign) + ' ' + String(number2) + String(" = ") + String(result);</code>
+        This long line converts the <code>number1</code>, <code>sign</code>, <code>number2</code>, and
+        <code>result</code>
+        variables into strings and then fills in the necessary spaces and <em>equals</em> sign.</p>
+    <p>Use the <code>Serial.println</code> function to print this new string and then prompt the user to enter another
+        operation. Lastly, set the <code>readyToPrint</code> boolean to <em>false</em>. Test, save, add, commit, and
+        push your
+        work.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-15-break-it">Checkpoint 15: Break It</h2>
+    <p>What happens if you attempt to perform operations on very large numbers? What happens if you attempt to use
+        floating-point numbers? What happens if you divide numbers that leave a remainder? Figure out the answers to
+        these
+        questions, and then solve at least one of the resulting problems. Then save, add, commit, and push your code.
+    </p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+    <h2 id="checkpoint-16-improve-it">Checkpoint 16: Improve It</h2>
+    <p>At this point, remove your extra printing functions and add instructions for the user that show when the Arduino
+        connects via serial. Clean up and organize your code and see if you can make any improvements before you commit
+        your
+        final code. Then save, add, commit, and push your code.</p>
+    <p class="checkpoint">
+        Have Mr. Olinda verify this checkpoint before moving on.
+    </p>
+
+    <footer>
+        <hr>
+        <p class="turnin">Turn in your checkpoint sheet to the teacher's desk once it is completely signed and has your
+            name and section. You may now work on stretch projects.</p>
+        <a id="homeButton" href="index.html">Return to Home Page</a>
+    </footer>
+</body>
+
+</html>
