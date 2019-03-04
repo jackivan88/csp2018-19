@@ -11,8 +11,6 @@ bool readyToPrint = false;
 
 int count;
 
-String inbound;
-
 void setup() {
   Serial.begin(115200);
   Serial.println("This program is able to perform addition, subtraction, multiplication, and division of two integers.");
