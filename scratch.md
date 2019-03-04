@@ -194,7 +194,7 @@ Now, study the `else if` and `else` statements and prepare to explain what they 
 
 ## Checkpoint 12: Fix cleanData()
 
-The reason your code will not work is because your microcontroller is so much faster than your serial connection. Thus, it can read a byte from the serial buffer and cycle through the whole program in less time than it takes for the next byte to arrive. So you will get unusual errors in your results because of incomplete data transfer. There are multiple ways to solve this, and the optimal solution involves storing the serial buffer locally where it can be parsed as quickly as possible. However, a simpler, but slower, solution is to artificially delay the program long enough for the serial connection to keep up. To do this, add a one-millisecond delay to your _isDigit_ and _isGraph_ statements and test your program again.
+The reason your code will not work is because your microcontroller is so much faster than your serial connection. Thus, it can read a byte from the serial buffer and cycle through the whole program in less time than it takes for the next byte to arrive. So you will get unusual errors in your results because of incomplete data transfer. There are multiple ways to solve this, and [the optimal solution](http://gammon.com.au/serial) involves storing the serial buffer locally where it can be parsed as quickly as possible. However, a conceptually simpler, but slower, solution is to artificially delay the program long enough for the serial connection to keep up. To do this, add a one-millisecond delay to your _isDigit_ and _isGraph_ statements and test your program again.
 
 <p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
@@ -235,6 +235,7 @@ default:
   break;
 ```
 
-After you close your `switch`, toggle the `readyToCalculate` boolean to _false_.
+After you close your `switch`, toggle the `readyToCalculate` boolean to _false_. Add your new function to `void loop()` and save, add, commit, and push your work.
 
 <p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+
