@@ -1,7 +1,7 @@
 long number1;
 long number2;
 long result;
-long cleanDigits[32];
+long integers[32];
 
 char sign;
 
@@ -11,34 +11,33 @@ bool readyToPrint = false;
 
 int count;
 
+String inbound;
+
 void setup() {
   Serial.begin(115200);
   Serial.println("This program is able to perform addition, subtraction, multiplication, and division of two integers.");
-  Serial.println("Please enter an operation");
+  Serial.println("Please enter an operation.");
 }
 
 void loop() {
-  clean();
-  parseCleanData();
+  cleanData();
+  parseData();
   calculate();
   concatenateResultsAndPrint();
 }
 
-void clean() {
-  int count = 0;
+void cleanData() {
+  count = 0;
   while (Serial.available() > 0) {
     newData = true;
     if (isDigit(Serial.peek()) == true) {
-      cleanDigits[count] = Serial.parseInt();
+      integers[count] = Serial.parseInt();
       count++;
-      //      Serial.print("The current count is ");
-      //      Serial.println(count);
-      delay(10);
+      delay(1);
     }
     else if (isGraph(Serial.peek()) == true) {
       sign = Serial.read();
-      //      Serial.println(sign);
-      delay(10);
+      delay(1);
     }
     else {
       Serial.read();
@@ -46,13 +45,10 @@ void clean() {
   }
 }
 
-void parseCleanData() {
+void parseData() {
   if (newData == true) {
-    number1 = cleanDigits[0];
-    number2 = cleanDigits[1];
-//    Serial.println(number1);
-//    Serial.println(sign);
-//    Serial.println(number2);
+    number1 = integers[0];
+    number2 = integers[1];
     newData = false;
     readyToCalculate = true;
   }
@@ -64,22 +60,26 @@ void calculate() {
     switch (sign) {
       case '+' :
         result = number1 + number2;
+        readyToPrint = true;
         break;
       case '-' :
         result = number1 - number2;
+        readyToPrint = true;
         break;
       case '*' :
         result = number1 * number2;
+        readyToPrint = true;
         break;
       case '/' :
         result = number1 / number2;
+        readyToPrint = true;
         break;
       default:
-        Serial.println("Please try again.");
+        Serial.println("This operation is not supported. Please try again.");
+        readyToPrint = false;
         break;
     }
     readyToCalculate = false;
-    readyToPrint = true;
   }
 }
 
