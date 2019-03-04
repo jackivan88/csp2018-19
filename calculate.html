@@ -77,7 +77,7 @@
     <pre><code>  while (Serial.available() &gt; 0) {
         char inbound = Serial.read();
         Serial.println(inbound);
-      }</code></pre>
+    }</code></pre>
     <p>We are declaring a <code>char</code> variable within the <code>while</code> statement, which means it won’t be
         available everywhere in your program. This is acceptable here. Now, upload your code and type something into the
         serial monitor. Your program should send back what you typed, broken into one character per line. Try a few
@@ -100,12 +100,12 @@
         “invisible”
         characters. The Arduino library has a function designed to detect whether a character has visible content called
         <code>isGraph()</code>. Replace your <code>void loop()</code> content with:</p>
-    <pre><code>  while (Serial.available() &gt; 0) {
-        char inbound = Serial.read();
-        if (isGraph(inbound)) {
-          Serial.println(inbound);
-        }
-      }</code></pre>
+    <pre><code>while (Serial.available() &gt; 0) {
+    char inbound = Serial.read();
+    if (isGraph(inbound)) {
+        Serial.println(inbound);
+    }
+}</code></pre>
     <p>Now type in a complete sentence and send it to your Arduino. Your result should come back with all the spaces
         removed. This will help you clean up your data and make it easier to work with. Now, create a function called
         <code>void cleanData()</code> at the bottom of your program and cut and paste the content of your
@@ -113,8 +113,8 @@
         which
         should look like this:</p>
     <pre><code>void loop() {
-      cleanData();
-    }</code></pre>
+    cleanData();
+}</code></pre>
     <p>Upload your code and test it. It should work exactly as it did before, but now you’ve created your own function
         that
         can be used anywhere in your code. <em>However, variables declared within this function aren’t available
@@ -154,14 +154,14 @@
         change
         your <code>if</code> statement from:</p>
     <pre><code>if (isGraph(inbound)) {
-      Serial.println(inbound);
-    }</code></pre>
+    Serial.println(inbound);
+}</code></pre>
     <p>to:</p>
     <pre><code>if (isGraph(inbound)) {
-      newData = true;
-      cleanData[count] = inbound;
-      count++;
-    }</code></pre>
+    newData = true;
+    cleanData[count] = inbound;
+    count++;
+}</code></pre>
     <p>This will send the data to your array instead of the serial monitor. First, it flips the boolean from
         <em>false</em>
         to <em>true</em>, which you will take advantage of later. Then it sends each character to a slot in the array
@@ -190,10 +190,10 @@
     <p>Create a new function at the bottom of your program called <em>printCleanData</em> and then type in the following
         statement:</p>
     <pre><code>if (newData == true) {
-      Serial.println(cleanData);
-      char cleanData[32] = &quot;&quot;;
-      newData = false;
-    }</code></pre>
+    Serial.println(cleanData);
+    char cleanData[32] = &quot;&quot;;
+    newData = false;
+}</code></pre>
     <p>At this point, make sure to format your code and verify it. Upload it and test it by sending the Arduino several
         phrases and sentences to see if you get clean data back. If you don’t, see if you can figure out what’s missing
         from
@@ -210,13 +210,13 @@
         the
         program. Replace</p>
     <pre><code>Serial.println(cleanData);
-    char cleanData[32] = &quot;&quot;;</code></pre>
+char cleanData[32] = &quot;&quot;;</code></pre>
     <p>with</p>
     <pre><code>number1 = integers[0];
-    number2 = integers[1];
-    Serial.println(number1);
-    Serial.println(sign);
-    Serial.println(number2);</code></pre>
+number2 = integers[1];
+Serial.println(number1);
+Serial.println(sign);
+Serial.println(number2);</code></pre>
     <p>Note that when you are assigning a value to a variable, the variable goes on the left of the equation, but when
         you
         are using it as a value for something else, it goes on the right. The <code>Serial.println()</code> functions
@@ -228,24 +228,24 @@
     <h2 id="checkpoint-11-modify-cleandata">Checkpoint 11: Modify cleanData()</h2>
     <p>Now, you need to make significant changes to <code>cleanData()</code>.</p>
     <pre><code>void cleanData() {
-      count = 0;
-      while (Serial.available() &gt; 0) {
+    count = 0;
+    while (Serial.available() &gt; 0) {
         newData = true;
         if (isDigit(Serial.peek()) == true) {
-          integers[count] = Serial.parseInt();
-          count++;
-          Serial.print(&quot;The current count is &quot;);
-          Serial.println(count);
+            integers[count] = Serial.parseInt();
+            count++;
+            Serial.print(&quot;The current count is &quot;);
+            Serial.println(count);
         }
         else if (isGraph(Serial.peek()) == true) {
-          sign = Serial.read();
-          Serial.println(sign);
+            sign = Serial.read();
+            Serial.println(sign);
         }
         else {
-          Serial.read();
+            Serial.read();
         }
-      }
-    }</code></pre>
+    }
+}</code></pre>
     <p>As before, the <code>cleanData()</code> function sets <code>count</code> to zero, and you still have a
         <code>while</code> statement. You’re also still toggling your <code>newData</code> boolean to true, which your
         program
@@ -292,21 +292,21 @@
             href="https://www.arduino.cc/reference/en/language/structure/control-structure/switchcase/"><code>switch</code></a>
         control structure. It will look like:</p>
     <pre><code>switch (var) {
-      case label1:
-        // statements
-        break;
-      case label2:
-        // statements
-        break;
-      default:
-        // statements
-        break;
-    }</code></pre>
+    case label1:
+    // statements
+    break;
+    case label2:
+    // statements
+    break;
+    default:
+    // statements
+    break;
+}</code></pre>
     <p>Your <code>switch</code> control structure is based on your <code>sign</code> variable and should start like
         this:
     </p>
     <pre><code>switch (sign) {
-      case &#39;+&#39; :
+    case &#39;+&#39; :
         result = number1 + number2;
         readyToPrint = true;
         break;</code></pre>
