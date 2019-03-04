@@ -235,7 +235,26 @@ default:
   break;
 ```
 
-After you close your `switch`, toggle the `readyToCalculate` boolean to _false_. Add your new function to `void loop()` and save, add, commit, and push your work.
+After you close your `switch`, toggle the `readyToCalculate` boolean to _false_. Add `Serial.print()` to each case to help debug any mistakes. Add your new function to `void loop()` and save, add, commit, and push your work.
 
 <p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
 
+## Checkpoint 14: Show Your Work
+
+It's time to print. Create a function called _concatenateResultsAndPrint_ and add it to your `void loop()` function. Create an `if` statement testing whether the `readyToPrint` boolean is _true_. Inside the `if` statement you will concatenate several variables and then print your results to the serial monitor. Declare a local `String` variable called _printCalculation_ and set it to `String(number1) + ' ' + String(sign) + ' ' + String(number2) + String(" = ") + String(result);` This long line converts the `number1`, `sign`, `number2`, and `result` variables into strings and then fills in the necessary spaces and _equals_ sign.
+
+Use the `Serial.println` function to print this new string and then prompt the user to enter another operation. Lastly, set the `readyToPrint` boolean to _false_. Test, save, add, commit, and push your work.
+
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+
+## Checkpoint 15: Break It
+
+What happens if you attempt to perform operations on very large numbers? What happens if you attempt to use floating-point numbers? What happens if you divide numbers that leave a remainder? Figure out the answers to these questions, and then solve at least one of the resulting problems. Then save, add, commit, and push your code.
+
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
+
+## Checkpoint 16: Improve It
+
+At this point, remove your extra printing functions and add instructions for the user that show when the Arduino connects via serial. Clean up and organize your code and see if you can make any improvements before you commit your final code. Then save, add, commit, and push your code.
+
+<p class="checkpoint">Have Mr. Olinda verify this checkpoint before moving on.</p>
