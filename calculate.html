@@ -61,9 +61,9 @@
         numbers. Add
         the following lines of code at the top of your program:</p>
     <pre><code>int number1;
-    char sign;
-    int number2;
-    int result;</code></pre>
+char sign;
+int number2;
+int result;</code></pre>
     <p>This tells your Arduino that you want three integer variables to work with along with one character variable.
         Save,
         add, commit, and push your code. Then be prepared to explain what information will go in each variable.</p>
@@ -74,10 +74,10 @@
     <p>We need to set up your program to handle incoming serial data. Before you write the actual code, we’re going to
         create a test to make sure your incoming data is being processed. Add the following code to your
         <code>void loop()</code> section:</p>
-    <pre><code>  while (Serial.available() &gt; 0) {
-        char inbound = Serial.read();
-        Serial.println(inbound);
-    }</code></pre>
+    <pre><code>while (Serial.available() &gt; 0) {
+    char inbound = Serial.read();
+    Serial.println(inbound);
+}</code></pre>
     <p>We are declaring a <code>char</code> variable within the <code>while</code> statement, which means it won’t be
         available everywhere in your program. This is acceptable here. Now, upload your code and type something into the
         serial monitor. Your program should send back what you typed, broken into one character per line. Try a few
