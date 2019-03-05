@@ -312,9 +312,9 @@ Serial.println(number2);</code></pre>
         break;</code></pre>
     <p>Create cases for the other three operations and then end with a default:</p>
     <pre><code>default:
-      Serial.println(&quot;This operation is not supported. Please try again.&quot;);
-      readyToPrint = false;
-      break;</code></pre>
+    Serial.println(&quot;This operation is not supported. Please try again.&quot;);
+    readyToPrint = false;
+    break;</code></pre>
     <p>After you close your <code>switch</code>, toggle the <code>readyToCalculate</code> boolean to <em>false</em>. Add
         <code>Serial.print()</code> to each case to help debug any mistakes. Add your new function to
         <code>void loop()</code>
